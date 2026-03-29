@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAM AI — Account Intelligence Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════
+   KAM AI DEMO — Design System "Deep Signal"
+   Syne (display) · Outfit (UI) · JetBrains Mono (data)
+   ════════════════════════════════════════════════ */
+:root {
+  --ink:    #06080C;
+  --s0:     #0B0E14;
+  --s1:     #10131A;
+  --s2:     #161922;
+  --s3:     #1C202C;
+  --s4:     #232836;
+  --s5:     #2B3042;
+
+  --b0:     rgba(255,255,255,0.042);
+  --b1:     rgba(255,255,255,0.075);
+  --b2:     rgba(255,255,255,0.13);
+  --b3:     rgba(255,255,255,0.20);
+
+  --t1:     #E9EDF6;
+  --t2:     #7C8BA0;
+  --t3:     #3C4A5E;
+  --t4:     #232D3E;
+
+  --sig:    #4F83FF;
+  --sig-lo: rgba(79,131,255,0.09);
+  --sig-md: rgba(79,131,255,0.17);
+
+  --go:     #18C97F;
+  --go-lo:  rgba(24,201,127,0.09);
+
+  --wn:     #F0A829;
+  --wn-lo:  rgba(240,168,41,0.09);
+
+  --rd:     #EF4D4D;
+  --rd-lo:  rgba(239,77,77,0.09);
+
+  --pu:     #B07EF5;
+  --pu-lo:  rgba(176,126,245,0.09);
+
+  --cy:     #1EC8D4;
+  --cy-lo:  rgba(30,200,212,0.09);
+
+  --f1:     'Syne', sans-serif;
+  --f2:     'Outfit', sans-serif;
+  --f3:     'JetBrains Mono', monospace;
+
+  --r1:   6px; --r2:   10px; --r3:   14px; --r4:   20px;
+  --nav:  250px;
+  --tour: 64px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:var(--f2);background:var(--ink);color:var(--t1);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font-family:var(--f2);cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:var(--f2)}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--sig-md)}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--s5);border-radius:2px}
+.hidden{display:none!important}
+
+/* ── Shell ── */
+#login-shell{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--ink);position:relative;overflow:hidden}
+#login-shell::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 18% 35%,rgba(79,131,255,0.07) 0%,transparent 55%),radial-gradient(ellipse 55% 40% at 82% 72%,rgba(24,201,127,0.05) 0%,transparent 50%);pointer-events:none}
+#login-shell::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M48 0L0 0 0 48' fill='none' stroke='rgba(255,255,255,0.018)' stroke-width='0.5'/%3E%3C/svg%3E");pointer-events:none}
+
+#app-shell{display:flex;height:100vh;overflow:hidden}
+.main{flex:1;overflow-y:auto;background:var(--ink)}
+.page{padding:36px 40px 80px;max-width:1380px;animation:pg .22s cubic-bezier(.16,1,.3,1)}
+@keyframes pg{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Login ── */
+.lp{position:relative;z-index:10;width:398px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r4);padding:44px 40px 40px;box-shadow:0 0 0 1px var(--b0),0 40px 80px rgba(0,0,0,.55)}
+.lp::before{content:'';position:absolute;top:0;left:22%;right:22%;height:1px;background:linear-gradient(90deg,transparent,rgba(79,131,255,.45),transparent)}
+.lm{display:flex;align-items:center;gap:11px;margin-bottom:34px}
+.lmark{width:38px;height:38px;background:linear-gradient(135deg,var(--sig) 0%,#2A5CCC 100%);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lname{font-family:var(--f1);font-size:19px;font-weight:700;letter-spacing:-.4px}
+.lname em{font-weight:300;font-style:normal;color:var(--t3);margin-left:4px;font-size:16px}
+.ltag{margin-left:auto;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sig);background:var(--sig-lo);border:1px solid rgba(79,131,255,.2);padding:2px 6px;border-radius:20px}
+.lh{font-family:var(--f1);font-size:25px;font-weight:700;letter-spacing:-.6px;margin-bottom:5px}
+.ls{font-size:13.5px;color:var(--t2);margin-bottom:30px}
+.fl{margin-bottom:14px}
+.fl label{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.fl input{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r1);padding:10px 13px;font-size:13.5px;color:var(--t1);outline:none;transition:border-color .12s,box-shadow .12s}
+.fl input:focus{border-color:var(--sig);box-shadow:0 0 0 3px var(--sig-lo)}
+.lbtn{width:100%;padding:12px;background:var(--sig);border-radius:var(--r1);color:#fff;font-family:var(--f1);font-size:14px;font-weight:600;cursor:pointer;margin-top:6px;transition:background .12s,box-shadow .12s;border:none}
+.lbtn:hover{background:#6899FF;box-shadow:0 4px 20px rgba(79,131,255,.35)}
+.ldemo{text-align:center;font-size:12px;color:var(--t3);margin-top:18px;padding-top:16px;border-top:1px solid var(--b0)}
+.ldemo em{color:var(--t2);font-style:normal}
+
+/* ── Sidebar ── */
+.sb{width:var(--nav);background:var(--s0);border-right:1px solid var(--b0);display:flex;flex-direction:column;flex-shrink:0}
+.sb-brand{padding:20px 18px 16px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--b0);margin-bottom:6px}
+.sb-mark{width:27px;height:27px;background:linear-gradient(135deg,var(--sig),#2554CC);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-title{font-family:var(--f1);font-size:15px;font-weight:700;letter-spacing:-.3px}
+.sb-tag{margin-left:auto;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sig);background:var(--sig-lo);border:1px solid rgba(79,131,255,.18);padding:2px 6px;border-radius:20px}
+.ss{padding:13px 18px 4px;font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t4)}
+.ni{display:flex;align-items:center;gap:9px;padding:8px 14px 8px 18px;margin:1px 8px 1px 0;border-radius:0 var(--r1) var(--r1) 0;cursor:pointer;color:var(--t2);font-size:13px;font-weight:400;transition:color .12s,background .12s;position:relative;user-select:none}
+.ni:hover{color:var(--t1);background:rgba(255,255,255,.025)}
+.ni.act{color:var(--t1);background:rgba(255,255,255,.045);font-weight:500}
+.ni.act::before{content:'';position:absolute;left:0;top:22%;bottom:22%;width:2px;background:var(--sig);border-radius:0 2px 2px 0}
+.ni-ic{width:15px;height:15px;flex-shrink:0;opacity:.6;display:flex;align-items:center;justify-content:center}
+.ni.act .ni-ic{opacity:1}
+.np{margin-left:auto;font-size:10px;font-weight:600;font-family:var(--f3);min-width:18px;height:18px;padding:0 5px;border-radius:9px;display:flex;align-items:center;justify-content:center}
+.np.d{background:var(--rd-lo);color:var(--rd)}
+.np.w{background:var(--wn-lo);color:var(--wn)}
+.sb-u{margin-top:auto;padding:13px 15px;border-top:1px solid var(--b0);display:flex;align-items:center;gap:9px}
+.av{width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:600;flex-shrink:0;color:#fff;letter-spacing:.02em}
+
+/* ── Page header ── */
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px}
+.ph-ey{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:4px}
+.ph-ti{font-family:var(--f1);font-size:23px;font-weight:700;letter-spacing:-.55px;line-height:1.2}
+.ph-su{font-size:13px;color:var(--t2);margin-top:4px}
+.ph-ac{display:flex;gap:8px;align-items:center;padding-top:4px}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:var(--r1);font-size:12.5px;font-weight:500;cursor:pointer;border:none;transition:all .12s;white-space:nowrap;font-family:var(--f2)}
+.btn-p{background:var(--sig);color:#fff}.btn-p:hover{background:#6899FF;box-shadow:0 3px 12px rgba(79,131,255,.3)}
+.btn-g{background:transparent;color:var(--t2);border:1px solid var(--b2)}.btn-g:hover{background:var(--s2);color:var(--t1)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-xs{padding:4px 9px;font-size:11px}
+
+/* ── KPI row ── */
+.kr{display:grid;gap:11px;margin-bottom:24px}
+.kr-5{grid-template-columns:repeat(5,1fr)}
+.kr-4{grid-template-columns:repeat(4,1fr)}
+.kpi{background:var(--s1);border:1px solid var(--b0);border-radius:var(--r2);padding:18px 20px 16px;position:relative;overflow:hidden;transition:border-color .12s}
+.kpi:hover{border-color:var(--b1)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.055),transparent);pointer-events:none}
+.kl{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);margin-bottom:9px}
+.kv{font-family:var(--f3);font-size:24px;font-weight:500;letter-spacing:-.5px;color:var(--t1);line-height:1;font-feature-settings:"tnum" 1}
+.kd{font-size:11px;margin-top:6px;display:flex;align-items:center;gap:3px;color:var(--t3)}
+.kd.up{color:var(--go)}.kd.dn{color:var(--rd)}.kd.wn{color:var(--wn)}
+.kv.r{color:var(--rd)}.kv.w{color:var(--wn)}.kv.g{color:var(--go)}
+
+/* ── Cards ── */
+.card{background:var(--s1);border:1px solid var(--b0);border-radius:var(--r2);position:relative;overflow:hidden;transition:border-color .12s}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.05),transparent);pointer-events:none}
+.cb{padding:20px 22px}
+.ch{padding:13px 22px;border-bottom:1px solid var(--b0);display:flex;align-items:center;justify-content:space-between}
+.ct{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t3)}
+
+/* ── Badges ── */
+.b{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:500;white-space:nowrap}
+.b::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.b-g{background:var(--go-lo);color:var(--go);border:1px solid rgba(24,201,127,.18)}
+.b-w{background:var(--wn-lo);color:var(--wn);border:1px solid rgba(240,168,41,.18)}
+.b-r{background:var(--rd-lo);color:var(--rd);border:1px solid rgba(239,77,77,.18)}
+.b-s{background:var(--sig-lo);color:var(--sig);border:1px solid rgba(79,131,255,.18)}
+.b-m{background:var(--s3);color:var(--t2);border:1px solid var(--b1)}
+.b-p{background:var(--pu-lo);color:var(--pu);border:1px solid rgba(176,126,245,.18)}
+.bp{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:500;white-space:nowrap}
+.bp-g{background:var(--go-lo);color:var(--go)}.bp-w{background:var(--wn-lo);color:var(--wn)}.bp-r{background:var(--rd-lo);color:var(--rd)}.bp-s{background:var(--sig-lo);color:var(--sig)}.bp-m{background:var(--s3);color:var(--t2)}.bp-p{background:var(--pu-lo);color:var(--pu)}
+.tag{font-size:11px;color:var(--t3);background:var(--s3);border:1px solid var(--b1);padding:2px 7px;border-radius:var(--r1);font-family:var(--f3)}
+
+/* ── Table ── */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead th{padding:10px 14px;text-align:left;font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);border-bottom:1px solid var(--b0);white-space:nowrap}
+thead th:first-child{padding-left:22px}
+thead th:last-child{padding-right:22px;text-align:right}
+tbody tr{border-bottom:1px solid var(--b0);transition:background .1s;cursor:pointer}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.022)}
+td{padding:13px 14px;font-size:13px;color:var(--t1);vertical-align:middle}
+td:first-child{padding-left:22px}
+td:last-child{padding-right:22px;text-align:right}
+td.dim{color:var(--t2)}
+td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
+.tn{font-weight:500;font-size:13.5px}
+.ts{font-size:11.5px;color:var(--t3);margin-top:1px}
+
+/* ── Health cell ── */
+.hc{display:flex;align-items:center;gap:9px}
+.hn{font-family:var(--f3);font-size:13.5px;font-weight:500;min-width:24px;font-feature-settings:"tnum" 1}
+.hn.r{color:var(--rd)}.hn.w{color:var(--wn)}.hn.g{color:var(--go)}
+.hb{width:56px;height:3px;background:var(--s4);border-radius:2px;overflow:hidden;flex-shrink:0}
+.hf{height:100%;border-radius:2px}
+.hf.r{background:var(--rd)}.hf.w{background:var(--wn)}.hf.g{background:var(--go)}
+
+/* ── Score ring ── */
+.sr{position:relative;width:46px;height:46px;flex-shrink:0}
+.sr svg{transform:rotate(-90deg)}
+.sr-bg{fill:none;stroke:var(--s4);stroke-width:3.5}
+.sr-f{fill:none;stroke-width:3.5;stroke-linecap:round}
+.sr-n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f3);font-size:12px;font-weight:500}
+
+/* ── Alert cards ── */
+.ac{background:var(--s1);border:1px solid var(--b0);border-radius:var(--r2);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;transition:border-color .12s,background .12s;position:relative;overflow:hidden}
+.ac::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.ac.r::before{background:var(--rd)}
+.ac.w::before{background:var(--wn)}
+.ac:hover{background:var(--s2);border-color:var(--b1)}
+.ad{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.ad.r{background:var(--rd-lo)}.ad.w{background:var(--wn-lo)}
+.at{font-size:13.5px;font-weight:500;margin-bottom:3px}
+.ax{font-size:12.5px;color:var(--t2);line-height:1.5}
+.am{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:9px}
+
+/* ── Risk item ── */
+.ri{padding:13px 16px;border-left:2px solid;border-radius:0 var(--r1) var(--r1) 0;background:var(--s2);transition:background .12s}
+.ri:hover{background:var(--s3)}
+.ri.c{border-left-color:var(--rd)}.ri.h{border-left-color:var(--wn)}.ri.m{border-left-color:var(--t4)}
+.rt{font-size:13px;font-weight:500;margin-bottom:3px}
+.rx{font-size:12.5px;color:var(--t2);line-height:1.5}
+.rm{display:flex;align-items:center;gap:7px;margin-top:8px}
+
+/* ── Timeline ── */
+.tl{position:relative;padding-left:22px}
+.tl::before{content:'';position:absolute;left:5px;top:6px;bottom:0;width:1px;background:var(--b0)}
+.ti{position:relative;margin-bottom:16px}
+.ti:last-child{margin-bottom:0}
+.td{position:absolute;left:-20px;top:3px;width:8px;height:8px;border-radius:50%;background:var(--s4);border:1.5px solid var(--b2)}
+.td.g{background:var(--go);border-color:var(--go);box-shadow:0 0 6px rgba(24,201,127,.35)}
+.td.r{background:var(--rd);border-color:var(--rd)}
+.td.w{background:var(--wn);border-color:var(--wn)}
+.tt{font-size:13px;color:var(--t1);line-height:1.42}
+.tm{font-size:11px;color:var(--t3);margin-top:2px;font-family:var(--f3)}
+
+/* ── RAG ── */
+.rag-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.rag-col{display:flex;flex-direction:column;gap:8px}
+.rag-hd{padding:9px 14px;border-radius:var(--r1);font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.rag-hd.r{background:var(--rd-lo);color:var(--rd);border:1px solid rgba(239,77,77,.15)}
+.rag-hd.w{background:var(--wn-lo);color:var(--wn);border:1px solid rgba(240,168,41,.15)}
+.rag-hd.g{background:var(--go-lo);color:var(--go);border:1px solid rgba(24,201,127,.15)}
+.rag-cnt{font-family:var(--f3);font-size:15px;font-weight:500}
+.rag-card{background:var(--s1);border:1px solid var(--b0);border-radius:var(--r2);padding:14px 16px;cursor:pointer;transition:border-color .12s,background .12s}
+.rag-card:hover{border-color:var(--b1);background:var(--s2)}
+.rn{font-size:13.5px;font-weight:500;margin-bottom:3px}
+.ra{font-size:11.5px;color:var(--t2);font-family:var(--f3)}
+.rs-big{font-family:var(--f3);font-size:28px;font-weight:500;line-height:1;letter-spacing:-1px}
+.rag-risks{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.rrr{font-size:11.5px;padding:5px 9px;border-radius:var(--r1);border-left:2px solid}
+.rrr.c{border-left-color:var(--rd);background:rgba(239,77,77,.06);color:var(--t1)}
+.rrr.h{border-left-color:var(--wn);background:rgba(240,168,41,.06);color:var(--t1)}
+.rrr.n{border-left-color:var(--t4);background:var(--s2);color:var(--t2)}
+
+/* ── Pipe row ── */
+.pr{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--b0)}
+.pr:last-child{border-bottom:none}
+.pl{font-size:12.5px;font-weight:500;min-width:115px}
+.pt{flex:1;height:3.5px;background:var(--s4);border-radius:2px;overflow:hidden}
+.pf{height:100%;border-radius:2px;transition:width .7s cubic-bezier(.16,1,.3,1)}
+.pv{font-family:var(--f3);font-size:12.5px;min-width:58px;text-align:right;font-feature-settings:"tnum" 1}
+
+/* ── Stakeholder card ── */
+.sc{background:var(--s2);border:1px solid var(--b0);border-radius:var(--r2);padding:14px 16px;transition:border-color .12s}
+.sc:hover{border-color:var(--b1)}
+.si{width:32px;height:32px;border-radius:50%;background:var(--s3);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--t2);flex-shrink:0}
+.sn{font-size:13px;font-weight:500}
+.st{font-size:11.5px;color:var(--t3);margin-top:1px}
+.srow{display:flex;align-items:center;gap:7px;margin-top:5px}
+.slbl{font-size:10.5px;color:var(--t3);min-width:68px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+
+/* ── Account hero ── */
+.ahero{background:var(--s1);border:1px solid var(--b0);border-radius:var(--r3);padding:26px 30px;margin-bottom:22px;position:relative;overflow:hidden}
+.ahero::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.ahero.r::before{background:linear-gradient(90deg,transparent,rgba(239,77,77,.65) 30%,rgba(239,77,77,.25) 70%,transparent)}
+.ahero.w::before{background:linear-gradient(90deg,transparent,rgba(240,168,41,.6) 30%,rgba(240,168,41,.2) 70%,transparent)}
+.ahero.g::before{background:linear-gradient(90deg,transparent,rgba(24,201,127,.55) 30%,rgba(24,201,127,.18) 70%,transparent)}
+.ahero-glow{position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;filter:blur(90px);pointer-events:none}
+.ahero-glow.r{background:radial-gradient(circle,rgba(239,77,77,.09),transparent 65%)}
+.ahero-glow.w{background:radial-gradient(circle,rgba(240,168,41,.08),transparent 65%)}
+.ahero-glow.g{background:radial-gradient(circle,rgba(24,201,127,.07),transparent 65%)}
+.an{font-family:var(--f1);font-size:27px;font-weight:700;letter-spacing:-.7px;margin-bottom:5px}
+.am2{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.am2 span{font-size:12.5px;color:var(--t2)}
+.am2 s{color:var(--t4)}
+
+/* ── Detail rows ── */
+.dr{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--b0);font-size:13px}
+.dr:last-child{border-bottom:none}
+.dr .dl{color:var(--t2)}
+.dr .dv{font-family:var(--f3);color:var(--t1);font-weight:500}
+
+/* ── Kanban ── */
+.kg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kc{background:var(--s1);border:1px solid var(--b0);border-radius:var(--r2);overflow:hidden}
+.kch{padding:11px 14px;font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);border-bottom:1px solid var(--b0);background:var(--s2);display:flex;justify-content:space-between;align-items:center}
+.kcnt{font-family:var(--f3);font-size:11px;font-weight:500;color:var(--t2);background:var(--s3);padding:1px 6px;border-radius:10px}
+.ki{padding:10px;display:flex;flex-direction:column;gap:6px}
+.kcard{background:var(--s2);border:1px solid var(--b0);border-radius:var(--r1);padding:11px 12px;cursor:pointer;transition:border-color .12s,background .12s}
+.kcard:hover{border-color:var(--b1);background:var(--s3)}
+.kct{font-size:12.5px;font-weight:500;margin-bottom:2px}
+.kcs{font-size:11.5px;color:var(--t3)}
+
+/* ── Form ── */
+.ff{margin-bottom:14px}
+.ff label{display:block;font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);margin-bottom:6px}
+.fi,.fsel,.fta{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r1);padding:9px 12px;font-size:13px;color:var(--t1);outline:none;transition:border-color .12s,box-shadow .12s;font-family:var(--f2)}
+.fi:focus,.fsel:focus,.fta:focus{border-color:var(--sig);box-shadow:0 0 0 3px var(--sig-lo)}
+.fta{resize:vertical;min-height:100px;line-height:1.6}
+
+/* ── Brief output ── */
+.bw{background:var(--s2);border:1px solid var(--b0);border-radius:var(--r2);overflow:hidden}
+.btop{padding:12px 18px;border-bottom:1px solid var(--b0);display:flex;align-items:center;justify-content:space-between;background:var(--s1)}
+.bb{padding:22px;font-size:13px;line-height:1.75;color:var(--t1);max-height:500px;overflow-y:auto}
+.bb h3{font-family:var(--f1);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sig);margin-top:18px;margin-bottom:7px;padding-bottom:6px;border-bottom:1px solid rgba(79,131,255,.12)}
+.bb h3:first-child{margin-top:0}
+.bb ul{padding-left:16px}
+.bb li{margin-bottom:5px;color:var(--t1)}
+.bb strong{color:var(--t1);font-weight:500}
+.bb p{margin-bottom:6px;color:var(--t2)}
+
+/* ── Report ── */
+.rb{padding:26px 30px;font-size:13.5px;line-height:1.8;color:var(--t1)}
+.rb h3{font-family:var(--f1);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sig);margin-top:22px;margin-bottom:8px}
+.rb h3:first-child{margin-top:0}
+.rb ul{padding-left:18px}
+.rb li{margin-bottom:5px;color:var(--t2)}
+.rb strong{color:var(--t1);font-weight:500}
+.rb p{color:var(--t2);margin-bottom:7px}
+.rb .hi{color:var(--rd);font-weight:500}
+.rb .hu{color:var(--go);font-weight:500}
+
+/* ── Spark bars ── */
+.sp{height:52px;display:flex;align-items:flex-end;gap:2.5px;padding:0 1px}
+.spb{flex:1;border-radius:2px 2px 0 0;min-height:3px;cursor:pointer}
+.spb:hover{opacity:.75}
+
+/* ── Section header ── */
+.sh{font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;margin-top:24px;display:flex;align-items:center;gap:10px}
+.sh::after{content:'';flex:1;height:1px;background:var(--b0)}
+
+/* ── Crumb ── */
+.crumb{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--t3);cursor:pointer;margin-bottom:18px;transition:color .12s}
+.crumb:hover{color:var(--t2)}
+
+/* ── Grid helpers ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g21{display:grid;grid-template-columns:1.6fr 1fr;gap:18px}
+.g12{display:grid;grid-template-columns:1fr 1.6fr;gap:18px}
+.gs{display:flex;flex-direction:column;gap:14px}
+.row{display:flex;align-items:center;gap:10px}
+.rsb{display:flex;align-items:center;justify-content:space-between}
+.mla{margin-left:auto}
+
+/* ── AI cursor ── */
+.cur{display:inline-block;width:2px;height:13px;background:var(--sig);margin-left:1px;vertical-align:text-bottom;animation:bl 1s step-end infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ══════════════════════════════
+   DEMO TOUR BAR
+   ══════════════════════════════ */
+#tour-bar{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  gap:0;
+  background:var(--s2);
+  border:1px solid var(--b2);
+  border-radius:40px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 1px var(--b1);
+  overflow:hidden;
+  transition:opacity .2s;
+}
+#tour-bar::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);pointer-events:none}
+.tb-section{padding:0 20px;display:flex;align-items:center;gap:10px;height:52px;border-right:1px solid var(--b1)}
+.tb-section:last-child{border-right:none}
+.tb-label{display:flex;flex-direction:column}
+.tb-eyebrow{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
+.tb-name{font-size:13px;font-weight:500;color:var(--t1)}
+.tb-desc{font-size:11px;color:var(--t2);max-width:260px}
+.tb-count{font-family:var(--f3);font-size:11px;color:var(--t3);white-space:nowrap}
+.tb-nav{display:flex;gap:0}
+.tb-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--t2);border-radius:50%;transition:background .12s,color .12s;cursor:pointer;font-size:16px}
+.tb-btn:hover{background:var(--s3);color:var(--t1)}
+.tb-exit{padding:6px 14px;font-size:11.5px;font-weight:500;color:var(--t3);cursor:pointer;transition:color .12s}
+.tb-exit:hover{color:var(--t1)}
+.tb-start{padding:0 20px;display:flex;align-items:center;height:52px;gap:10px;cursor:pointer}
+.tb-start:hover .tb-name{color:var(--sig)}
+
+/* ══════════════════════════════
+   PORTFOLIO DONUT
+   ══════════════════════════════ */
+.donut-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.donut-legend{display:flex;flex-direction:column;gap:7px;width:100%}
+.dl-row{display:flex;align-items:center;justify-content:space-between;font-size:12px}
+.dl-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dl-label{color:var(--t2);flex:1;margin-left:7px}
+.dl-val{font-family:var(--f3);color:var(--t1);font-size:11.5px}
+
+/* ══════════════════════════════
+   HEALTH TREND CHART
+   ══════════════════════════════ */
+.trend-wrap{position:relative;height:80px;width:100%}
+.trend-wrap svg{width:100%;height:100%}
+
+/* ══════════════════════════════
+   STAKEHOLDER RELATIONSHIP MAP
+   ══════════════════════════════ */
+.smap-wrap{position:relative;overflow:hidden;border-radius:var(--r2)}
+.smap-wrap svg{width:100%;display:block}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     LOGIN
+     ══════════════════════════════════════════ -->
+<div id="login-shell">
+  <div class="lp">
+    <div class="lm">
+      <div class="lmark">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M3 14L7.5 4L12 14" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 11H10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="14" cy="5" r="1.6" fill="rgba(255,255,255,.65)"/>
+          <circle cx="14" cy="5" r="2.8" fill="rgba(255,255,255,.12)"/>
+        </svg>
+      </div>
+      <span class="lname">KAM AI <em>Intelligence</em></span>
+      <span class="ltag">Demo</span>
+    </div>
+    <div class="lh">Welcome back</div>
+    <div class="ls">Sign in to your account intelligence platform</div>
+    <div class="fl"><label>Work email</label><input type="email" id="le" value="elena.rodriguez@acme.com"></div>
+    <div class="fl"><label>Password</label><input type="password" id="lp" value="••••••••"></div>
+    <button class="lbtn" onclick="doLogin()">Access KAM AI →</button>
+    <div class="ldemo">Demo environment &nbsp;·&nbsp; <em>elena.rodriguez@acme.com</em></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     APP
+     ══════════════════════════════════════════ -->
+<div id="app-shell" class="hidden">
+
+  <!-- SIDEBAR -->
+  <nav class="sb">
+    <div class="sb-brand">
+      <div class="sb-mark">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <path d="M2 10.5L5 4L8 10.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.5 8.5H6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10.5" cy="3" r="1.3" fill="rgba(255,255,255,.7)"/>
+        </svg>
+      </div>
+      <span class="sb-title">KAM AI</span>
+      <span class="sb-tag">Demo</span>
+    </div>
+
+    <div class="ss">Intelligence</div>
+    <div class="ni act" onclick="go('dashboard')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="1" y="8" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="1" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><rect x="8" y="8" width="5" height="5" rx="1.5" stroke="currentColor" stroke-width="1.3"/></svg></span>
+      Command Center
+    </div>
+    <div class="ni" onclick="go('accounts')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.3"/><path d="M1.5 13c0-3.038 2.462-5.5 5.5-5.5s5.5 2.462 5.5 5.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+      Accounts
+    </div>
+    <div class="ni" onclick="go('meetings')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2.5" width="12" height="9.5" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 2.5V1M9.5 2.5V1M1 6.5h12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+      Meeting Prep
+    </div>
+
+    <div class="ss">Portfolio</div>
+    <div class="ni" onclick="go('renewals')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7A5 5 0 0 1 7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M12 7A5 5 0 0 1 7 12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M1 5.5l1 1.5L3.5 5.5M11 8.5l-1 1.5-2-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Renewals
+      <span class="np w">4</span>
+    </div>
+    <div class="ni" onclick="go('risk')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L13.5 12H0.5L7 1z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M7 5.5V8.5M7 10.5v.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+      Risk Portfolio
+      <span class="np d">2</span>
+    </div>
+    <div class="ni" onclick="go('growth')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 10.5L5 7.5l3 2L12 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 3.5h2v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Growth
+    </div>
+    <div class="ni" onclick="go('competitors')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M3 4a7 7 0 0 0 8 0M3 10a7 7 0 0 1 8 0" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      Competitors
+    </div>
+
+    <div class="ss">Strategy</div>
+    <div class="ni" onclick="go('plans')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 5h7M3.5 7.5h7M3.5 10h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+      Account Plans
+    </div>
+    <div class="ni" onclick="go('reports')">
+      <span class="ni-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12.5V5.5L5.5 2H12V12.5H2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.5 2v3.5H2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 8h5M4.5 10h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+      Reports
+    </div>
+
+    <div class="sb-u">
+      <div class="av" style="background:linear-gradient(135deg,#3A5FCC,var(--sig))">ER</div>
+      <div><div style="font-size:13px;font-weight:500">Elena Rodriguez</div><div style="font-size:11px;color:var(--t3);margin-top:1px">Key Account Manager</div></div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ══ COMMAND CENTER ══ -->
+    <div id="p-dashboard" class="page">
+      <div class="ph">
+        <div>
+          <div class="ph-ey">Tuesday, 25 March 2025</div>
+          <div class="ph-ti">Good morning, Elena</div>
+          <div class="ph-su">8 accounts &middot; £2.96M portfolio ARR &middot; <span style="color:var(--rd);font-weight:500">2 critical alerts require immediate action</span></div>
+        </div>
+        <div class="ph-ac">
+          <button class="btn btn-g btn-sm" onclick="startTour()">▶ Start guided tour</button>
+          <button class="btn btn-p btn-sm">+ New account</button>
+        </div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kr kr-5">
+        <div class="kpi"><div class="kl">Portfolio ARR</div><div class="kv" id="k-arr">£2.96M</div><div class="kd">8 active accounts</div></div>
+        <div class="kpi"><div class="kl">ARR at critical risk</div><div class="kv r" id="k-risk">£1.0M</div><div class="kd dn">2 accounts, &lt;45 days</div></div>
+        <div class="kpi"><div class="kl">Renewals in 90d</div><div class="kv w" id="k-ren">4</div><div class="kd wn">Next: 3 May</div></div>
+        <div class="kpi"><div class="kl">Growth pipeline</div><div class="kv g" id="k-grw">£511K</div><div class="kd up">6 opportunities</div></div>
+        <div class="kpi"><div class="kl">Avg health score</div><div class="kv" id="k-hlt">71</div><div class="kd dn">↓5 pts vs last week</div></div>
+      </div>
+
+      <div class="g21" style="gap:22px">
+        <div>
+          <!-- Critical alerts -->
+          <div class="sh" style="margin-top:0">Critical alerts — action required today</div>
+          <div class="gs">
+            <div class="ac r" onclick="go('account-helixbio')">
+              <div class="ad r" style="font-size:16px">⚠</div>
+              <div style="flex:1">
+                <div class="at">HelixBio Pharma — Veeva Solutions in active RFP</div>
+                <div class="ax">Procurement has initiated a parallel competitive evaluation with Veeva Solutions. Renewal on 12 May — 47 days away. Internal champion Dr. Chen stepped down in March. No exec sponsor covering the gap. £615K ARR at immediate risk.</div>
+                <div class="am">
+                  <span class="tag">£615K ARR</span>
+                  <span class="tag">Renewal: 12 May</span>
+                  <span class="tag">47 days</span>
+                  <span class="bp-r">Critical</span>
+                  <button class="btn btn-g btn-xs" onclick="event.stopPropagation();go('meetings')" style="margin-left:auto">Prep meeting →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ac r" onclick="go('account-novacrest')">
+              <div class="ad r" style="font-size:16px">⚠</div>
+              <div style="flex:1">
+                <div class="at">NovaCrest Health Systems — renewal in 39 days, no executive relationship</div>
+                <div class="ax">Exec sponsor Sir Graham Whitmore resigned January 2025. Replacement team unengaged. Active users down 44% in 10 weeks. New IT Director (ex-iCompliance employee) raises additional competitor risk. £385K ARR. Renewal 3 May.</div>
+                <div class="am">
+                  <span class="tag">£385K ARR</span>
+                  <span class="tag">Renewal: 3 May</span>
+                  <span class="tag">39 days</span>
+                  <span class="bp-r">Critical</span>
+                  <button class="btn btn-g btn-xs" onclick="event.stopPropagation();go('account-novacrest')" style="margin-left:auto">View account →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Priority accounts table -->
+          <div class="sh">Portfolio — all accounts</div>
+          <div class="card">
+            <div class="tw">
+              <table>
+                <thead><tr><th>Account</th><th>Health</th><th>RAG</th><th>ARR</th><th>Renewal</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr onclick="go('account-helixbio')"><td><div class="tn">HelixBio Pharma</div><div class="ts">Pharmaceutical · Strategic</div></td><td><div class="hc"><span class="hn r">27</span><div class="hb"><div class="hf r" style="width:27%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£615K</td><td class="mo" style="color:var(--rd)">12 May</td><td><span class="b b-r">Critical</span></td></tr>
+                  <tr onclick="go('account-novacrest')"><td><div class="tn">NovaCrest Health Systems</div><div class="ts">Healthcare · Strategic</div></td><td><div class="hc"><span class="hn r">31</span><div class="hb"><div class="hf r" style="width:31%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£385K</td><td class="mo" style="color:var(--rd)">3 May</td><td><span class="b b-r">Critical</span></td></tr>
+                  <tr onclick="go('account-vantage')"><td><div class="tn">Vantage Retail Holdings</div><div class="ts">Retail · Growth</div></td><td><div class="hc"><span class="hn w">52</span><div class="hb"><div class="hf w" style="width:52%"></div></div></div></td><td><span class="b b-w">Amber</span></td><td class="mo">£195K</td><td class="mo">4 Jun</td><td><span class="b b-w">Monitor</span></td></tr>
+                  <tr><td><div class="tn">TerraGroup Construction</div><div class="ts">Construction · Standard</div></td><td><div class="hc"><span class="hn w">61</span><div class="hb"><div class="hf w" style="width:61%"></div></div></div></td><td><span class="b b-w">Amber</span></td><td class="mo">£98K</td><td class="mo">14 Jul</td><td><span class="b b-w">Monitor</span></td></tr>
+                  <tr><td><div class="tn">Crestline Telecom</div><div class="ts">Telecoms · Growth</div></td><td><div class="hc"><span class="hn g">79</span><div class="hb"><div class="hf g" style="width:79%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£235K</td><td class="mo">8 Jan</td><td><span class="b b-g">Healthy</span></td></tr>
+                  <tr><td><div class="tn">Axiom Aerospace</div><div class="ts">Aerospace · Growth</div></td><td><div class="hc"><span class="hn g">76</span><div class="hb"><div class="hf g" style="width:76%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£290K</td><td class="mo">18 Feb</td><td><span class="b b-g">Healthy</span></td></tr>
+                  <tr onclick="go('account-meridian')"><td><div class="tn">Meridian Global Logistics</div><div class="ts">Logistics · Strategic</div></td><td><div class="hc"><span class="hn g">83</span><div class="hb"><div class="hf g" style="width:83%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£425K</td><td class="mo">20 Aug</td><td><span class="b b-g">Healthy</span></td></tr>
+                  <tr onclick="go('account-thornfield')"><td><div class="tn">Thornfield Capital Group</div><div class="ts">Financial Services · Strategic</div></td><td><div class="hc"><span class="hn g">91</span><div class="hb"><div class="hf g" style="width:91%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£720K</td><td class="mo">18 Dec</td><td><span class="b b-g">Excellent</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="gs">
+
+          <!-- Portfolio donut -->
+          <div class="card">
+            <div class="ch"><span class="ct">Portfolio health</span><span style="font-size:11.5px;color:var(--t3)">by ARR</span></div>
+            <div class="cb" style="padding:18px 20px">
+              <div style="display:flex;align-items:center;gap:20px">
+                <div style="flex-shrink:0">
+                  <svg width="100" height="100" viewBox="0 0 100 100" style="transform:rotate(-90deg)">
+                    <!-- circumference: 2*π*36 = 226.2 -->
+                    <!-- Green: 56.4% = 127.6 -->
+                    <circle cx="50" cy="50" r="36" fill="none" stroke="var(--s4)" stroke-width="10"/>
+                    <circle cx="50" cy="50" r="36" fill="none" stroke="var(--go)" stroke-width="10" stroke-dasharray="127.6 98.6" stroke-dashoffset="0" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="36" fill="none" stroke="var(--wn)" stroke-width="10" stroke-dasharray="22.4 203.8" stroke-dashoffset="-129.6" stroke-linecap="round"/>
+                    <circle cx="50" cy="50" r="36" fill="none" stroke="var(--rd)" stroke-width="10" stroke-dasharray="76.4 149.8" stroke-dashoffset="-153.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div style="flex:1">
+                  <div class="dl-row" style="margin-bottom:8px"><div class="dl-dot" style="background:var(--go)"></div><span class="dl-label">Green</span><span class="dl-val" style="color:var(--go)">£1.67M</span></div>
+                  <div class="dl-row" style="margin-bottom:8px"><div class="dl-dot" style="background:var(--rd)"></div><span class="dl-label">Red</span><span class="dl-val" style="color:var(--rd)">£1.00M</span></div>
+                  <div class="dl-row"><div class="dl-dot" style="background:var(--wn)"></div><span class="dl-label">Amber</span><span class="dl-val" style="color:var(--wn)">£293K</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI recommendations -->
+          <div class="card">
+            <div class="ch"><span class="ct">AI recommended actions</span><span style="font-size:11px;color:var(--t3);font-family:var(--f3)">GPT-4o · 2h ago</span></div>
+            <div class="cb" style="padding:14px 18px;display:flex;flex-direction:column;gap:10px">
+              <div style="padding:12px;background:var(--s2);border-radius:var(--r1);cursor:pointer;border:1px solid var(--b0);transition:border-color .12s" onmouseover="this.style.borderColor='var(--b1)'" onmouseout="this.style.borderColor='var(--b0)'" onclick="go('meetings')">
+                <div style="font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--rd);margin-bottom:4px">↑ Urgent — today</div>
+                <div style="font-size:12.5px;font-weight:500;margin-bottom:2px">Escalate HelixBio to CRO before Veeva decision</div>
+                <div style="font-size:11.5px;color:var(--t2)">RFP decision expected before end of April. CEO-level intervention needed.</div>
+              </div>
+              <div style="padding:12px;background:var(--s2);border-radius:var(--r1);cursor:pointer;border:1px solid var(--b0);transition:border-color .12s" onmouseover="this.style.borderColor='var(--b1)'" onmouseout="this.style.borderColor='var(--b0)'" onclick="go('account-novacrest')">
+                <div style="font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--rd);margin-bottom:4px">↑ Urgent — this week</div>
+                <div style="font-size:12.5px;font-weight:500;margin-bottom:2px">Request executive intro at NovaCrest Health</div>
+                <div style="font-size:11.5px;color:var(--t2)">New CIO Dr. Aisha Patel needs relationship before renewal conversation.</div>
+              </div>
+              <div style="padding:12px;background:var(--s2);border-radius:var(--r1);cursor:pointer;border:1px solid var(--b0);transition:border-color .12s" onmouseover="this.style.borderColor='var(--b1)'" onmouseout="this.style.borderColor='var(--b0)'" onclick="go('growth')">
+                <div style="font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--go);margin-bottom:4px">↑ Growth — high priority</div>
+                <div style="font-size:12.5px;font-weight:500;margin-bottom:2px">Progress Thornfield APAC expansion proposal</div>
+                <div style="font-size:11.5px;color:var(--t2)">£180K opportunity. 78% probability. Board approval window closes Q2.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity feed -->
+          <div class="card">
+            <div class="ch"><span class="ct">Recent activity</span></div>
+            <div class="cb" style="padding:18px 20px">
+              <div class="tl">
+                <div class="ti"><div class="td r"></div><div class="tt">Risk escalated: HelixBio Pharma — Veeva RFP confirmed</div><div class="tm">Today 09:14</div></div>
+                <div class="ti"><div class="td r"></div><div class="tt">Renewal alert: NovaCrest Health — 39 days out</div><div class="tm">Today 08:00</div></div>
+                <div class="ti"><div class="td g"></div><div class="tt">Growth item added: Thornfield APAC Operations £180K</div><div class="tm">Yesterday 16:50</div></div>
+                <div class="ti"><div class="td"></div><div class="tt">Meeting prep generated: Meridian Global QBR</div><div class="tm">Yesterday 14:22</div></div>
+                <div class="ti" style="margin-bottom:0"><div class="td g"></div><div class="tt">Renewal signed: Axiom Aerospace — £290K, +8% uplift</div><div class="tm">Mon 24 Mar, 11:00</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ACCOUNTS LIST ══ -->
+    <div id="p-accounts" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Accounts</div><div class="ph-su">8 accounts &middot; £2.96M total ARR &middot; 2 red &middot; 2 amber &middot; 4 green</div></div>
+        <div class="ph-ac"><button class="btn btn-g btn-sm">Import CSV</button><button class="btn btn-p btn-sm">+ New account</button></div>
+      </div>
+      <div class="kr kr-4">
+        <div class="kpi"><div class="kl">Strategic</div><div class="kv">4</div><div class="kd">£1.74M ARR</div></div>
+        <div class="kpi"><div class="kl">Red</div><div class="kv r">2</div><div class="kd dn">£1.0M at risk</div></div>
+        <div class="kpi"><div class="kl">Amber</div><div class="kv w">2</div><div class="kd wn">£293K</div></div>
+        <div class="kpi"><div class="kl">Green</div><div class="kv g">4</div><div class="kd up">£1.67M secure</div></div>
+      </div>
+      <div class="card">
+        <div class="tw">
+          <table>
+            <thead><tr><th>Account</th><th>Industry</th><th>Health</th><th>Status</th><th>ARR</th><th>Renewal</th><th>Owner</th></tr></thead>
+            <tbody>
+              <tr onclick="go('account-helixbio')"><td><div class="tn">HelixBio Pharma</div></td><td class="dim">Pharmaceutical</td><td><div class="hc"><span class="hn r">27</span><div class="hb"><div class="hf r" style="width:27%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£615K</td><td class="mo" style="color:var(--rd)">12 May</td><td class="dim">Elena R.</td></tr>
+              <tr onclick="go('account-novacrest')"><td><div class="tn">NovaCrest Health Systems</div></td><td class="dim">Healthcare</td><td><div class="hc"><span class="hn r">31</span><div class="hb"><div class="hf r" style="width:31%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£385K</td><td class="mo" style="color:var(--rd)">3 May</td><td class="dim">Elena R.</td></tr>
+              <tr onclick="go('account-vantage')"><td><div class="tn">Vantage Retail Holdings</div></td><td class="dim">Retail</td><td><div class="hc"><span class="hn w">52</span><div class="hb"><div class="hf w" style="width:52%"></div></div></div></td><td><span class="b b-w">Amber</span></td><td class="mo">£195K</td><td class="mo">4 Jun</td><td class="dim">Elena R.</td></tr>
+              <tr><td><div class="tn">TerraGroup Construction</div></td><td class="dim">Construction</td><td><div class="hc"><span class="hn w">61</span><div class="hb"><div class="hf w" style="width:61%"></div></div></div></td><td><span class="b b-w">Amber</span></td><td class="mo">£98K</td><td class="mo">14 Jul</td><td class="dim">Marcus T.</td></tr>
+              <tr><td><div class="tn">Crestline Telecom</div></td><td class="dim">Telecoms</td><td><div class="hc"><span class="hn g">79</span><div class="hb"><div class="hf g" style="width:79%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£235K</td><td class="mo">8 Jan</td><td class="dim">Elena R.</td></tr>
+              <tr><td><div class="tn">Axiom Aerospace</div></td><td class="dim">Aerospace</td><td><div class="hc"><span class="hn g">76</span><div class="hb"><div class="hf g" style="width:76%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£290K</td><td class="mo">18 Feb</td><td class="dim">Elena R.</td></tr>
+              <tr onclick="go('account-meridian')"><td><div class="tn">Meridian Global Logistics</div></td><td class="dim">Logistics</td><td><div class="hc"><span class="hn g">83</span><div class="hb"><div class="hf g" style="width:83%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£425K</td><td class="mo">20 Aug</td><td class="dim">Elena R.</td></tr>
+              <tr onclick="go('account-thornfield')"><td><div class="tn">Thornfield Capital Group</div></td><td class="dim">Financial Services</td><td><div class="hc"><span class="hn g">91</span><div class="hb"><div class="hf g" style="width:91%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£720K</td><td class="mo">18 Dec</td><td class="dim">Elena R.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ACCOUNT DETAIL — HELIXBIO ══ -->
+    <div id="p-account-helixbio" class="page hidden">
+      <div class="crumb" onclick="go('accounts')"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M7.5 1L2.5 5.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> All accounts</div>
+      <div class="ahero r">
+        <div class="ahero-glow r"></div>
+        <div class="rsb" style="margin-bottom:12px">
+          <div>
+            <div class="an">HelixBio Pharma</div>
+            <div class="am2"><span>Pharmaceutical</span><s>·</s><span>Enterprise</span><s>·</s><span>Strategic tier</span><s>·</s><span>Owner: Elena Rodriguez</span></div>
+          </div>
+          <div class="row" style="gap:8px">
+            <button class="btn btn-g btn-sm" onclick="go('meetings')">Prep meeting</button>
+            <button class="btn btn-p btn-sm">+ Add note</button>
+          </div>
+        </div>
+        <div class="row" style="gap:6px;flex-wrap:wrap">
+          <span class="b b-r">Red account</span>
+          <span class="b b-p">Strategic</span>
+          <span class="tag">Compliance Suite</span>
+          <span class="tag">Data Insights</span>
+          <span class="tag">5 EU entities</span>
+        </div>
+      </div>
+
+      <div class="kr kr-4" style="margin-bottom:22px">
+        <div class="kpi">
+          <div class="kl">Health score</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:7px">
+            <div class="sr">
+              <svg width="46" height="46" viewBox="0 0 46 46"><circle class="sr-bg" cx="23" cy="23" r="19"/><circle class="sr-f" cx="23" cy="23" r="19" stroke="var(--rd)" stroke-dasharray="119.4" stroke-dashoffset="87.2"/></svg>
+              <div class="sr-n" style="color:var(--rd)">27</div>
+            </div>
+            <div style="font-size:11.5px;color:var(--t3);line-height:1.5">Critical<br>Immediate action</div>
+          </div>
+        </div>
+        <div class="kpi"><div class="kl">ARR</div><div class="kv" style="margin-top:6px">£615K</div><div class="kd dn">Renewal: 12 May 2025</div></div>
+        <div class="kpi"><div class="kl">Renewal probability</div><div class="kv r" style="margin-top:6px">32%</div><div style="margin-top:8px"><div class="hb" style="width:100%;height:3.5px"><div class="hf r" style="width:32%"></div></div></div></div>
+        <div class="kpi"><div class="kl">Open risk events</div><div class="kv r" style="margin-top:6px">3</div><div class="kd dn">2 critical, 1 high</div></div>
+      </div>
+
+      <div class="g2" style="gap:22px">
+        <div class="gs">
+          <!-- Summary -->
+          <div class="sh" style="margin-top:0">Account intelligence</div>
+          <div class="card"><div class="cb" style="padding:18px 22px"><p style="font-size:13.5px;color:var(--t2);line-height:1.78">Pan-European pharmaceutical group operating across 5 entities. Using our Compliance Suite and Data Insights modules since June 2022. ARR: £615,000. Critical renewal in 47 days. The account entered a risk state in Q1 2025 when the CFO issued a 20% vendor cost reduction mandate and procurement — acting independently of IT — initiated a parallel evaluation with Veeva Solutions. Long-term champion Dr. Emily Chen (Head of Compliance) stepped down in March and has not been replaced. Our position is held largely by IT Director James Thornton, who remains supportive but cannot unilaterally halt the RFP process.</p></div></div>
+
+          <!-- Health trend -->
+          <div class="sh">Health score trend — last 8 months</div>
+          <div class="card"><div class="cb" style="padding:16px 22px 14px">
+            <div class="trend-wrap">
+              <svg viewBox="0 0 400 80" preserveAspectRatio="none" fill="none">
+                <defs>
+                  <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--rd)" stop-opacity=".15"/>
+                    <stop offset="100%" stop-color="var(--rd)" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Health trend line: 78→76→72→68→60→51→38→27 -->
+                <path d="M0,9 L57,12 L114,18 L171,26 L228,38 L285,48 L342,62 L400,71" stroke="var(--rd)" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M0,9 L57,12 L114,18 L171,26 L228,38 L285,48 L342,62 L400,71 L400,80 L0,80 Z" fill="url(#tg)"/>
+                <!-- Dots -->
+                <circle cx="0"   cy="9"  r="3" fill="var(--rd)" opacity=".5"/>
+                <circle cx="57"  cy="12" r="3" fill="var(--rd)" opacity=".5"/>
+                <circle cx="114" cy="18" r="3" fill="var(--rd)" opacity=".5"/>
+                <circle cx="171" cy="26" r="3" fill="var(--rd)" opacity=".5"/>
+                <circle cx="228" cy="38" r="3" fill="var(--rd)" opacity=".7"/>
+                <circle cx="285" cy="48" r="3" fill="var(--rd)" opacity=".8"/>
+                <circle cx="342" cy="62" r="3.5" fill="var(--rd)"/>
+                <circle cx="400" cy="71" r="4" fill="var(--rd)"/>
+              </svg>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--f3)">
+              <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span style="color:var(--rd)">Mar</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--t3);margin-top:3px;font-family:var(--f3)">
+              <span>78</span><span>76</span><span>72</span><span>68</span><span>60</span><span>51</span><span>38</span><span style="color:var(--rd);font-weight:600">27</span>
+            </div>
+          </div></div>
+
+          <!-- Risk events -->
+          <div class="sh">Open risk events</div>
+          <div class="gs">
+            <div class="ri c">
+              <div class="rt">Veeva Solutions active RFP — procurement-led evaluation</div>
+              <div class="rx">Sarah McAllister (Procurement VP) initiated a parallel vendor evaluation in February without IT input. Veeva Solutions and one unknown competitor shortlisted. Procurement decision expected before 30 April.</div>
+              <div class="rm"><span class="b b-r">Critical</span><span class="tag">Competitor threat</span><span style="font-size:10.5px;color:var(--t3);font-family:var(--f3)">Detected 14 Feb</span></div>
+            </div>
+            <div class="ri c">
+              <div class="rt">Champion gap — Dr. Emily Chen (Head of Compliance) departed March 2025</div>
+              <div class="rx">Our primary internal advocate and the executive who originally championed the platform purchase has stepped down with no direct replacement named. The compliance function is now managed by an interim appointee with no relationship with our team.</div>
+              <div class="rm"><span class="b b-r">Critical</span><span class="tag">Champion loss</span><span style="font-size:10.5px;color:var(--t3);font-family:var(--f3)">Detected 8 Mar</span></div>
+            </div>
+            <div class="ri h">
+              <div class="rt">CFO mandate: 20% vendor cost reduction across all contracts</div>
+              <div class="rx">Richard Forsythe (CFO) issued a cost reduction directive in January 2025 as part of a group-wide efficiency programme. Renewal budget not yet confirmed. Procurement has been instructed to renegotiate or replace all contracts above £500K.</div>
+              <div class="rm"><span class="b b-w">High</span><span class="tag">Budget cut</span><span style="font-size:10.5px;color:var(--t3);font-family:var(--f3)">Detected 22 Jan</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs">
+          <!-- Stakeholder map -->
+          <div class="sh" style="margin-top:0">Stakeholder intelligence</div>
+          <div class="gs">
+            <div class="sc">
+              <div class="row" style="margin-bottom:10px">
+                <div class="si">RF</div>
+                <div><div class="sn">Richard Forsythe</div><div class="st">Chief Financial Officer</div></div>
+              </div>
+              <div class="srow"><span class="slbl">Role</span><span class="b b-s">Economic buyer</span></div>
+              <div class="srow"><span class="slbl">Sentiment</span><span class="b b-r">Negative</span></div>
+              <div class="srow"><span class="slbl">Engagement</span><span class="b b-r">Silent — no response since Jan</span></div>
+              <div style="font-size:11.5px;color:var(--t3);margin-top:8px;padding-top:8px;border-top:1px solid var(--b0)">Initiated 20% cost reduction programme. Considers this contract a target for renegotiation or replacement.</div>
+            </div>
+            <div class="sc">
+              <div class="row" style="margin-bottom:10px">
+                <div class="si">SM</div>
+                <div><div class="sn">Sarah McAllister</div><div class="st">VP Procurement</div></div>
+              </div>
+              <div class="srow"><span class="slbl">Role</span><span class="b b-s">Economic buyer</span><span class="b b-r" style="margin-left:4px">Blocker</span></div>
+              <div class="srow"><span class="slbl">Sentiment</span><span class="b b-r">Negative</span></div>
+              <div class="srow"><span class="slbl">Engagement</span><span class="b b-r">Silent</span></div>
+              <div style="font-size:11.5px;color:var(--t3);margin-top:8px;padding-top:8px;border-top:1px solid var(--b0)">Initiated RFP without consulting IT. Met with Veeva Solutions twice in February. No outreach has been returned.</div>
+            </div>
+            <div class="sc">
+              <div class="row" style="margin-bottom:10px">
+                <div class="si">JT</div>
+                <div><div class="sn">James Thornton</div><div class="st">IT Director</div></div>
+              </div>
+              <div class="srow"><span class="slbl">Role</span><span class="b b-s">Technical buyer</span></div>
+              <div class="srow"><span class="slbl">Sentiment</span><span class="b" style="background:var(--s3);color:var(--t2);border:1px solid var(--b1)">Neutral</span></div>
+              <div class="srow"><span class="slbl">Engagement</span><span class="b b-g">Active</span></div>
+              <div style="font-size:11.5px;color:var(--t3);margin-top:8px;padding-top:8px;border-top:1px solid var(--b0)">Supportive but limited authority. Caught between IT preference (retain) and procurement mandate (renegotiate). Meeting scheduled 28 Mar.</div>
+            </div>
+            <div class="sc">
+              <div class="row" style="margin-bottom:10px">
+                <div class="si">EC</div>
+                <div><div class="sn">Dr. Emily Chen</div><div class="st">Former Head of Compliance</div></div>
+              </div>
+              <div class="srow"><span class="slbl">Role</span><span class="b" style="background:var(--s3);color:var(--t2);border:1px solid var(--b1)">Departed</span></div>
+              <div class="srow"><span class="slbl">Sentiment</span><span class="b" style="background:var(--s3);color:var(--t2);border:1px solid var(--b1)">Former champion</span></div>
+              <div style="font-size:11.5px;color:var(--t3);margin-top:8px;padding-top:8px;border-top:1px solid var(--b0)">Was our primary advocate for 3 years. Stepped down March 2025. Interim replacement has no platform relationship. Re-engagement opportunity via LinkedIn.</div>
+            </div>
+          </div>
+
+          <!-- Commercial context -->
+          <div class="sh">Commercial context</div>
+          <div class="card"><div class="cb">
+            <div class="dr"><span class="dl">Current ARR</span><span class="dv">£615,000</span></div>
+            <div class="dr"><span class="dl">Contract start</span><span class="dv">1 Jun 2022</span></div>
+            <div class="dr"><span class="dl">Renewal date</span><span class="dv" style="color:var(--rd)">12 May 2025</span></div>
+            <div class="dr"><span class="dl">Days remaining</span><span class="dv" style="color:var(--rd)">47 days</span></div>
+            <div class="dr"><span class="dl">Products in use</span><span style="font-size:13px;font-family:var(--f2)">Compliance Suite, Data Insights</span></div>
+            <div class="dr"><span class="dl">Entities covered</span><span style="font-size:13px;font-family:var(--f2)">5 (DE, FR, UK, NL, BE)</span></div>
+            <div class="dr" style="border-bottom:none"><span class="dl">Expansion potential</span><span class="b b-r">None — at risk</span></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ MEETING PREP ══ -->
+    <div id="p-meetings" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">AI-powered · GPT-4o</div><div class="ph-ti">Meeting Prep</div><div class="ph-su">Generate pre-meeting briefs with account memory · Draft follow-ups in seconds</div></div>
+      </div>
+      <div class="g12" style="gap:22px">
+        <div class="gs">
+          <div class="sh" style="margin-top:0">Configure brief</div>
+          <div class="card"><div class="cb" style="padding:18px 22px">
+            <div class="ff"><label>Account</label><select class="fsel"><option>HelixBio Pharma</option><option>NovaCrest Health Systems</option><option>Thornfield Capital Group</option><option>Meridian Global Logistics</option></select></div>
+            <div class="ff"><label>Meeting title</label><input class="fi" id="prep-t" value="Q2 Strategic Review — Renewal &amp; Competitive Response"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div class="ff"><label>Type</label><select class="fsel"><option>QBR</option><option selected>Renewal</option><option>Executive</option></select></div>
+              <div class="ff"><label>Duration</label><select class="fsel"><option>45 min</option><option selected>60 min</option><option>90 min</option></select></div>
+            </div>
+            <div class="ff"><label>Attendees</label><input class="fi" value="Richard Forsythe (CFO), Sarah McAllister (Procurement), James Thornton (IT)"></div>
+            <div class="ff"><label>Priority context</label><textarea class="fta" style="min-height:80px">Veeva RFP decision expected by end of April. Need to reframe commercial conversation and re-engage CFO before procurement makes final recommendation. Bring usage-based pricing scenario.</textarea></div>
+            <button class="btn btn-p" style="width:100%" onclick="genBrief()">Generate prep brief with AI →</button>
+          </div></div>
+
+          <div class="sh">Post-meeting follow-ups</div>
+          <div class="card"><div class="cb" style="padding:18px 22px">
+            <div class="ff"><label>Raw meeting notes</label><textarea class="fta" id="raw-notes" style="min-height:120px">Met with Forsythe, Thornton, and McAllister. Forsythe confirmed the 20% mandate is non-negotiable in principle but was open to different structures. McAllister said Veeva presented last week — her words were "impressive but expensive." Thornton privately told me after the meeting that IT strongly prefers us. Action: send usage-based proposal by Friday. Forsythe wants a call with our CEO before final decision. McAllister agreed to hold procurement decision until we respond.</textarea></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+              <button class="btn btn-g" style="justify-content:center" onclick="genFollow('email')">Recap email</button>
+              <button class="btn btn-g" style="justify-content:center" onclick="genFollow('crm')">CRM note</button>
+              <button class="btn btn-g" style="justify-content:center" onclick="genFollow('internal')">Internal summary</button>
+            </div>
+          </div></div>
+        </div>
+
+        <div>
+          <div class="sh" style="margin-top:0">Generated output</div>
+          <div class="bw">
+            <div class="btop">
+              <div>
+                <div id="brief-lbl" style="font-size:13.5px;font-weight:500">HelixBio Pharma — Q2 Strategic Review</div>
+                <div style="font-size:10.5px;color:var(--t3);margin-top:1px;font-family:var(--f3)">GPT-4o · Account memory: 42 chunks · Generated 25 Mar 2025</div>
+              </div>
+              <div class="row" style="gap:6px"><button class="btn btn-g btn-xs">Copy</button><button class="btn btn-g btn-xs">Export PDF</button></div>
+            </div>
+            <div class="bb" id="brief-out">
+<h3>Account snapshot</h3>
+<p>HelixBio Pharma · Pan-European pharmaceutical group · 5 entities (DE, FR, UK, NL, BE) · Compliance Suite + Data Insights · ARR: £615,000 · Renewal: 12 May 2025 · Health score: 27 (critical, declining from 78 in August 2024)</p>
+
+<h3>Relationship status in this meeting</h3>
+<p><strong>Richard Forsythe (CFO)</strong> — Economic buyer, negative sentiment, silent since January. Has issued a 20% vendor cost reduction mandate. This meeting is your best opportunity to reframe the commercial conversation before procurement makes its recommendation. He responds to ROI data and peer benchmarks, not product pitches.</p>
+<p><strong>Sarah McAllister (VP Procurement)</strong> — Running the RFP independently. Has met with Veeva twice. Meeting her in this context is a significant opportunity — she has agreed to hold the decision pending your response, which signals she is not yet committed to switching.</p>
+<p><strong>James Thornton (IT Director)</strong> — Supportive, active. Will provide technical validation but cannot override procurement. Pre-brief him privately before the meeting if possible.</p>
+
+<h3>Key talking points</h3>
+<ul>
+<li><strong>Open with the ROI case, not a product pitch.</strong> Since June 2022: 38% reduction in audit preparation time, 0 reportable compliance incidents in 5 entities, €2.1M estimated regulatory penalty avoided (based on incident modelling). Give Forsythe a number he can use internally.</li>
+<li><strong>Reframe the cost question.</strong> A switch to Veeva carries an estimated 9–14 month implementation delay and €800K–1.2M in migration costs across 5 entities. This is the total cost of switching, not just contract value.</li>
+<li><strong>Present usage-based commercial options before they demand them.</strong> Have 3 scenarios prepared: (a) current terms +3% CPI uplift, (b) usage-based model at 15% reduction with commitment floors, (c) multi-year deal with 18% reduction and locked pricing. Let them choose.</li>
+<li><strong>Request CEO-to-CFO call.</strong> Forsythe indicated openness. This is the highest-value action coming out of this meeting — if agreed, escalate to your CEO by Thursday.</li>
+<li><strong>Address Veeva directly.</strong> Do not avoid it. Acknowledge that they conducted a strong presentation. Ask McAllister: "What would make our proposal definitively stronger than their offering for you?" Her answer will tell you the real decision criteria.</li>
+</ul>
+
+<h3>Risk items to manage</h3>
+<ul>
+<li><strong>Champion gap:</strong> Dr. Chen's departure leaves us without a credibility anchor in the compliance function. Do not reference Dr. Chen in the meeting — it signals instability. Focus on Thornton as the continuity voice.</li>
+<li><strong>McAllister disengagement:</strong> If she checks her phone or defers to Forsythe throughout, request a bilateral follow-up call this week. Do not let this meeting be the last substantive conversation before decision day.</li>
+<li><strong>Forsythe walking out early:</strong> CFOs do this. Have your 90-second ROI summary ready as an opening, and your commercial scenarios as a one-page leave-behind. The meeting can end at any moment.</li>
+</ul>
+
+<h3>Recommended next actions from this meeting</h3>
+<ul>
+<li>Leave a written commercial proposal with the three pricing scenarios before end of meeting</li>
+<li>Secure a date for CEO-to-Forsythe call — ideally before 4 April</li>
+<li>Request a bilateral with McAllister to understand final RFP scoring criteria</li>
+<li>Ask Thornton to send you the formal procurement evaluation timeline within 48 hours</li>
+</ul>
+            </div>
+          </div>
+
+          <div id="follow-sec" class="hidden" style="margin-top:16px">
+            <div class="bw">
+              <div class="btop"><div id="follow-lbl" style="font-size:13.5px;font-weight:500">Recap email</div><button class="btn btn-g btn-xs">Copy</button></div>
+              <div class="bb" id="follow-out" style="font-family:var(--f3);font-size:12.5px;color:var(--t2);line-height:1.8;white-space:pre-wrap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ RENEWALS ══ -->
+    <div id="p-renewals" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Renewal Intelligence</div><div class="ph-su">8 active renewals · £2.96M pipeline · AI health scoring · Next: NovaCrest 3 May</div></div>
+        <div class="ph-ac"><button class="btn btn-g btn-sm">Export</button></div>
+      </div>
+      <div class="kr kr-5">
+        <div class="kpi"><div class="kl">Due in 30d</div><div class="kv r">2</div><div class="kd dn">£1.0M combined</div></div>
+        <div class="kpi"><div class="kl">Due in 90d</div><div class="kv w">4</div><div class="kd wn">£1.29M</div></div>
+        <div class="kpi"><div class="kl">ARR at risk</div><div class="kv r">£1.0M</div><div class="kd dn">&lt;45% probability</div></div>
+        <div class="kpi"><div class="kl">High confidence</div><div class="kv g">£1.67M</div><div class="kd up">&gt;80% probability</div></div>
+        <div class="kpi"><div class="kl">Weighted forecast</div><div class="kv">£2.21M</div><div class="kd">Portfolio total</div></div>
+      </div>
+      <div class="card">
+        <div class="tw">
+          <table>
+            <thead><tr><th>Account</th><th>Renewal</th><th>ARR</th><th>Stage</th><th>Health</th><th>Probability</th><th>AI signals</th></tr></thead>
+            <tbody>
+              <tr onclick="go('account-novacrest')"><td><div class="tn">NovaCrest Health Systems</div><div class="ts">Healthcare · Strategic</div></td><td class="mo" style="color:var(--rd)">3 May 2025</td><td class="mo">£385K</td><td><span class="b b-s">In progress</span></td><td><div class="hc"><span class="hn r">31</span><div class="hb"><div class="hf r" style="width:31%"></div></div></div></td><td class="mo" style="color:var(--rd);font-weight:600">38%</td><td><span class="b b-r">Exec change</span></td></tr>
+              <tr onclick="go('account-helixbio')"><td><div class="tn">HelixBio Pharma</div><div class="ts">Pharmaceutical · Strategic</div></td><td class="mo" style="color:var(--wn)">12 May 2025</td><td class="mo">£615K</td><td><span class="b b-s">In progress</span></td><td><div class="hc"><span class="hn r">27</span><div class="hb"><div class="hf r" style="width:27%"></div></div></div></td><td class="mo" style="color:var(--rd);font-weight:600">32%</td><td><span class="b b-r">Competitor RFP</span></td></tr>
+              <tr onclick="go('account-vantage')"><td><div class="tn">Vantage Retail Holdings</div><div class="ts">Retail · Growth</div></td><td class="mo">4 Jun 2025</td><td class="mo">£195K</td><td><span class="b b-s">In progress</span></td><td><div class="hc"><span class="hn w">52</span><div class="hb"><div class="hf w" style="width:52%"></div></div></div></td><td class="mo" style="color:var(--wn);font-weight:600">64%</td><td><span class="b b-w">Champion left</span></td></tr>
+              <tr><td><div class="tn">TerraGroup Construction</div><div class="ts">Construction · Standard</div></td><td class="mo">14 Jul 2025</td><td class="mo">£98K</td><td><span class="b b-m">Not started</span></td><td><div class="hc"><span class="hn w">61</span><div class="hb"><div class="hf w" style="width:61%"></div></div></div></td><td class="mo" style="color:var(--wn);font-weight:600">68%</td><td><span class="b b-m">—</span></td></tr>
+              <tr onclick="go('account-meridian')"><td><div class="tn">Meridian Global Logistics</div><div class="ts">Logistics · Strategic</div></td><td class="mo">20 Aug 2025</td><td class="mo">£425K</td><td><span class="b b-m">Not started</span></td><td><div class="hc"><span class="hn g">83</span><div class="hb"><div class="hf g" style="width:83%"></div></div></div></td><td class="mo" style="color:var(--go);font-weight:600">91%</td><td><span class="b b-g">Strong</span></td></tr>
+              <tr><td><div class="tn">Crestline Telecom</div><div class="ts">Telecoms · Growth</div></td><td class="mo">8 Jan 2026</td><td class="mo">£235K</td><td><span class="b b-m">Not started</span></td><td><div class="hc"><span class="hn g">79</span><div class="hb"><div class="hf g" style="width:79%"></div></div></div></td><td class="mo" style="color:var(--go);font-weight:600">84%</td><td><span class="b b-g">Healthy</span></td></tr>
+              <tr><td><div class="tn">Axiom Aerospace</div><div class="ts">Aerospace · Growth</div></td><td class="mo">18 Feb 2026</td><td class="mo">£290K</td><td><span class="b b-m">Not started</span></td><td><div class="hc"><span class="hn g">76</span><div class="hb"><div class="hf g" style="width:76%"></div></div></div></td><td class="mo" style="color:var(--go);font-weight:600">88%</td><td><span class="b b-g">Healthy</span></td></tr>
+              <tr onclick="go('account-thornfield')"><td><div class="tn">Thornfield Capital Group</div><div class="ts">Financial Services · Strategic</div></td><td class="mo">18 Dec 2025</td><td class="mo">£720K</td><td><span class="b b-m">Not started</span></td><td><div class="hc"><span class="hn g">91</span><div class="hb"><div class="hf g" style="width:91%"></div></div></div></td><td class="mo" style="color:var(--go);font-weight:600">96%</td><td><span class="b b-g">Excellent</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ RISK PORTFOLIO ══ -->
+    <div id="p-risk" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Risk Portfolio</div><div class="ph-su">RAG status across all accounts · AI health-scored · Updated 25 Mar 2025, 09:00</div></div>
+      </div>
+      <div class="kr kr-4" style="margin-bottom:26px">
+        <div class="kpi"><div class="kl">Red accounts</div><div class="kv r">2</div><div class="kd dn">£1.0M ARR</div></div>
+        <div class="kpi"><div class="kl">Amber accounts</div><div class="kv w">2</div><div class="kd wn">£293K ARR</div></div>
+        <div class="kpi"><div class="kl">Green accounts</div><div class="kv g">4</div><div class="kd up">£1.67M ARR</div></div>
+        <div class="kpi"><div class="kl">Open risk events</div><div class="kv">6</div><div class="kd dn">3 critical</div></div>
+      </div>
+      <div class="rag-grid">
+        <div class="rag-col">
+          <div class="rag-hd r"><span>Red</span><span class="rag-cnt">2</span></div>
+          <div class="rag-card" onclick="go('account-helixbio')">
+            <div class="rsb" style="margin-bottom:5px"><div class="rn">HelixBio Pharma</div><div class="rs-big" style="color:var(--rd)">27</div></div>
+            <div class="ra">£615K · Renewal 12 May · 47 days</div>
+            <div class="rag-risks">
+              <div class="rrr c">Veeva Solutions RFP — active evaluation</div>
+              <div class="rrr c">Champion Dr. Chen departed March</div>
+              <div class="rrr h">CFO mandate: 20% vendor reduction</div>
+            </div>
+          </div>
+          <div class="rag-card" onclick="go('account-novacrest')">
+            <div class="rsb" style="margin-bottom:5px"><div class="rn">NovaCrest Health Systems</div><div class="rs-big" style="color:var(--rd)">31</div></div>
+            <div class="ra">£385K · Renewal 3 May · 39 days</div>
+            <div class="rag-risks">
+              <div class="rrr c">Exec sponsor Sir Graham Whitmore resigned</div>
+              <div class="rrr h">Active users down 44% since Jan</div>
+              <div class="rrr h">New IT Director: ex-iCompliance background</div>
+            </div>
+          </div>
+        </div>
+        <div class="rag-col">
+          <div class="rag-hd w"><span>Amber</span><span class="rag-cnt">2</span></div>
+          <div class="rag-card" onclick="go('account-vantage')">
+            <div class="rsb" style="margin-bottom:5px"><div class="rn">Vantage Retail Holdings</div><div class="rs-big" style="color:var(--wn)">52</div></div>
+            <div class="ra">£195K · Renewal 4 Jun</div>
+            <div class="rag-risks">
+              <div class="rrr h">Champion Claire Hodges moved to new division</div>
+              <div class="rrr n">Replacement (Dominic Reeves) not yet engaged</div>
+            </div>
+          </div>
+          <div class="rag-card">
+            <div class="rsb" style="margin-bottom:5px"><div class="rn">TerraGroup Construction</div><div class="rs-big" style="color:var(--wn)">61</div></div>
+            <div class="ra">£98K · Renewal 14 Jul</div>
+            <div class="rag-risks">
+              <div class="rrr n">Platform adoption 34% below target</div>
+              <div class="rrr n">Project module only — low stickiness</div>
+            </div>
+          </div>
+        </div>
+        <div class="rag-col">
+          <div class="rag-hd g"><span>Green</span><span class="rag-cnt">4</span></div>
+          <div class="rag-card" onclick="go('account-thornfield')">
+            <div class="rsb" style="margin-bottom:4px"><div class="rn">Thornfield Capital Group</div><div class="rs-big" style="color:var(--go)">91</div></div>
+            <div class="ra">£720K · Renewal 18 Dec · APAC expansion £180K</div>
+          </div>
+          <div class="rag-card" onclick="go('account-meridian')">
+            <div class="rsb" style="margin-bottom:4px"><div class="rn">Meridian Global Logistics</div><div class="rs-big" style="color:var(--go)">83</div></div>
+            <div class="ra">£425K · Renewal 20 Aug · Finance module £95K</div>
+          </div>
+          <div class="rag-card">
+            <div class="rsb" style="margin-bottom:4px"><div class="rn">Axiom Aerospace</div><div class="rs-big" style="color:var(--go)">76</div></div>
+            <div class="ra">£290K · Renewal 18 Feb · Enterprise upgrade £85K</div>
+          </div>
+          <div class="rag-card">
+            <div class="rsb" style="margin-bottom:4px"><div class="rn">Crestline Telecom</div><div class="rs-big" style="color:var(--go)">79</div></div>
+            <div class="ra">£235K · Renewal 8 Jan · HRMS connector £48K</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ GROWTH PORTFOLIO ══ -->
+    <div id="p-growth" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Growth Portfolio</div><div class="ph-su">6 open opportunities · £511K pipeline ARR · £341K weighted by probability</div></div>
+        <div class="ph-ac"><button class="btn btn-p btn-sm">+ Add opportunity</button></div>
+      </div>
+      <div class="kr kr-5">
+        <div class="kpi"><div class="kl">Gross pipeline</div><div class="kv g">£511K</div><div class="kd up">6 opportunities</div></div>
+        <div class="kpi"><div class="kl">Weighted pipeline</div><div class="kv">£341K</div><div class="kd">By probability</div></div>
+        <div class="kpi"><div class="kl">Expansion</div><div class="kv">£180K</div><div class="kd up">1 opp, 78%</div></div>
+        <div class="kpi"><div class="kl">Upsell</div><div class="kv">£243K</div><div class="kd up">3 opps</div></div>
+        <div class="kpi"><div class="kl">Cross-sell</div><div class="kv">£88K</div><div class="kd up">2 opps</div></div>
+      </div>
+      <div class="g2" style="gap:22px">
+        <div class="card">
+          <div class="ch"><span class="ct">Open opportunities</span></div>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Opportunity</th><th>Type</th><th>Est. ARR</th><th>Prob.</th><th>Stage</th></tr></thead>
+              <tbody>
+                <tr onclick="go('account-thornfield')"><td><div class="tn">Thornfield — APAC Operations expansion</div><div class="ts">Enterprise Suite · New geography</div></td><td><span class="bp bp-s">Expansion</span></td><td class="mo">£180K</td><td class="mo" style="color:var(--go);font-weight:600">78%</td><td><span class="b b-w">Proposing</span></td></tr>
+                <tr onclick="go('account-thornfield')"><td><div class="tn">Thornfield — Risk Analytics module</div><div class="ts">Risk Analytics Pro</div></td><td><span class="bp bp-p">Upsell</span></td><td class="mo">£65K</td><td class="mo" style="color:var(--go);font-weight:600">71%</td><td><span class="b b-w">Proposing</span></td></tr>
+                <tr onclick="go('account-meridian')"><td><div class="tn">Meridian — Finance Module integration</div><div class="ts">Finance Suite</div></td><td><span class="bp bp-p">Upsell</span></td><td class="mo">£95K</td><td class="mo" style="color:var(--go);font-weight:600">72%</td><td><span class="b b-m">Qualifying</span></td></tr>
+                <tr><td><div class="tn">Axiom — Enterprise tier upgrade</div><div class="ts">Enterprise Suite</div></td><td><span class="bp bp-p">Upsell</span></td><td class="mo">£85K</td><td class="mo" style="color:var(--wn);font-weight:600">68%</td><td><span class="b b-m">Qualifying</span></td></tr>
+                <tr><td><div class="tn">Crestline — HRMS integration connector</div><div class="ts">HRMS Connector</div></td><td><span class="bp bp-g">Cross-sell</span></td><td class="mo">£48K</td><td class="mo" style="color:var(--wn);font-weight:600">62%</td><td><span class="b b-s">Identified</span></td></tr>
+                <tr onclick="go('account-vantage')"><td><div class="tn">Vantage Retail — Analytics Pro add-on</div><div class="ts">Analytics Pro</div></td><td><span class="bp bp-g">Cross-sell</span></td><td class="mo">£38K</td><td class="mo" style="color:var(--wn);font-weight:600">44%</td><td><span class="b b-s">Identified</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="gs">
+          <div class="card">
+            <div class="ch"><span class="ct">Pipeline by type</span></div>
+            <div class="cb">
+              <div class="pr"><span class="pl">Expansion</span><div class="pt"><div class="pf" style="width:94%;background:var(--sig)"></div></div><span class="pv">£180K</span></div>
+              <div class="pr"><span class="pl">Upsell</span><div class="pt"><div class="pf" style="width:68%;background:var(--pu)"></div></div><span class="pv">£245K</span></div>
+              <div class="pr"><span class="pl">Cross-sell</span><div class="pt"><div class="pf" style="width:34%;background:var(--go)"></div></div><span class="pv">£86K</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="ch"><span class="ct">AI whitespace analysis</span></div>
+            <div class="cb" style="padding:14px 20px;display:flex;flex-direction:column;gap:9px">
+              <div style="padding:12px;background:var(--s2);border-radius:var(--r1);border:1px solid var(--b0)">
+                <div class="rsb" style="margin-bottom:4px"><span style="font-size:13px;font-weight:500">Thornfield Capital</span><span class="b b-p">High potential</span></div>
+                <div style="font-size:11.5px;color:var(--t3)">Risk Analytics, ESG Reporting, and Wealth Platform modules unused — all fit profile for a Tier-1 investment firm</div>
+              </div>
+              <div style="padding:12px;background:var(--s2);border-radius:var(--r1);border:1px solid var(--b0)">
+                <div class="rsb" style="margin-bottom:4px"><span style="font-size:13px;font-weight:500">Meridian Global</span><span class="b b-w">Medium potential</span></div>
+                <div style="font-size:11.5px;color:var(--t3)">Finance and HR modules unused — procurement consolidation angle is strong given recent restructure</div>
+              </div>
+              <div style="padding:12px;background:var(--s2);border-radius:var(--r1);border:1px solid var(--b0)">
+                <div class="rsb" style="margin-bottom:4px"><span style="font-size:13px;font-weight:500">TerraGroup Construction</span><span class="b b-m">Lower priority</span></div>
+                <div style="font-size:11.5px;color:var(--t3)">4 modules match profile but account is amber — stabilise first before expansion conversation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ COMPETITORS ══ -->
+    <div id="p-competitors" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">Intelligence</div><div class="ph-ti">Competitor View</div><div class="ph-su">6 active mentions across 5 accounts · 2 high-threat evaluations in progress</div></div>
+        <div class="ph-ac"><button class="btn btn-p btn-sm">+ Log mention</button></div>
+      </div>
+      <div class="g2" style="gap:22px">
+        <div class="card">
+          <div class="ch"><span class="ct">Active competitor threats</span></div>
+          <div class="tw">
+            <table>
+              <thead><tr><th>Account</th><th>Competitor</th><th>Threat</th><th>Status</th><th>Context</th></tr></thead>
+              <tbody>
+                <tr onclick="go('account-helixbio')"><td><div class="tn">HelixBio Pharma</div></td><td style="font-weight:500;font-size:13px">Veeva Solutions</td><td><span class="b b-r">High</span></td><td><span class="b b-r">Active RFP</span></td><td class="dim" style="font-size:12px;text-align:left">Shortlisted in active procurement RFP</td></tr>
+                <tr onclick="go('account-novacrest')"><td><div class="tn">NovaCrest Health</div></td><td style="font-weight:500;font-size:13px">iCompliance</td><td><span class="b b-r">High</span></td><td><span class="b b-r">Active</span></td><td class="dim" style="font-size:12px;text-align:left">New IT Director ex-iCompliance employee</td></tr>
+                <tr onclick="go('account-vantage')"><td><div class="tn">Vantage Retail</div></td><td style="font-weight:500;font-size:13px">SAP Ariba</td><td><span class="b b-w">Medium</span></td><td><span class="b b-w">Monitoring</span></td><td class="dim" style="font-size:12px;text-align:left">Mentioned in CFO budget review as preferred</td></tr>
+                <tr onclick="go('account-helixbio')"><td><div class="tn">HelixBio Pharma</div></td><td style="font-weight:500;font-size:13px">Salesforce</td><td><span class="b b-w">Medium</span></td><td><span class="b b-w">Monitoring</span></td><td class="dim" style="font-size:12px;text-align:left">Mentioned in IT review — consolidation option</td></tr>
+                <tr><td><div class="tn">TerraGroup</div></td><td style="font-weight:500;font-size:13px">Procore</td><td><span class="b b-m">Low</span></td><td><span class="b b-m">Monitoring</span></td><td class="dim" style="font-size:12px;text-align:left">Sales team using informally</td></tr>
+                <tr onclick="go('account-novacrest')"><td><div class="tn">NovaCrest Health</div></td><td style="font-weight:500;font-size:13px">Salesforce</td><td><span class="b b-w">Medium</span></td><td><span class="b b-w">Monitoring</span></td><td class="dim" style="font-size:12px;text-align:left">Mentioned as CRM consolidation option</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="gs">
+          <div class="card">
+            <div class="ch"><span class="ct">Frequency by competitor</span></div>
+            <div class="cb">
+              <div class="pr"><span class="pl">Veeva Solutions</span><div class="pt"><div class="pf" style="width:100%;background:var(--rd)"></div></div><span class="pv" style="color:var(--t2);font-size:11.5px">1 acct · High</span></div>
+              <div class="pr"><span class="pl">Salesforce</span><div class="pt"><div class="pf" style="width:67%;background:var(--sig)"></div></div><span class="pv" style="color:var(--t2);font-size:11.5px">2 accts</span></div>
+              <div class="pr"><span class="pl">iCompliance</span><div class="pt"><div class="pf" style="width:55%;background:var(--wn)"></div></div><span class="pv" style="color:var(--t2);font-size:11.5px">1 acct · High</span></div>
+              <div class="pr"><span class="pl">SAP Ariba</span><div class="pt"><div class="pf" style="width:38%;background:var(--wn)"></div></div><span class="pv" style="color:var(--t2);font-size:11.5px">1 acct</span></div>
+              <div class="pr"><span class="pl">Procore</span><div class="pt"><div class="pf" style="width:18%;background:var(--t4)"></div></div><span class="pv" style="color:var(--t2);font-size:11.5px">1 acct · Low</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="ch"><span class="ct">Log competitor mention</span></div>
+            <div class="cb" style="padding:14px 20px">
+              <div class="ff"><label>Account</label><select class="fsel"><option>Select account...</option><option>HelixBio Pharma</option><option>NovaCrest Health Systems</option><option>Vantage Retail Holdings</option></select></div>
+              <div class="ff"><label>Competitor</label><input class="fi" placeholder="e.g. Veeva, Salesforce..."></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div class="ff"><label>Threat level</label><select class="fsel"><option>High</option><option>Medium</option><option>Low</option></select></div>
+                <div class="ff"><label>Source</label><select class="fsel"><option>Manual</option><option>Email</option><option>Meeting notes</option></select></div>
+              </div>
+              <div class="ff" style="margin-bottom:12px"><label>Context</label><textarea class="fta" style="min-height:60px" placeholder="What was observed..."></textarea></div>
+              <button class="btn btn-p btn-sm">Save mention</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ACCOUNT PLANS ══ -->
+    <div id="p-plans" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">Strategy</div><div class="ph-ti">Account Plans</div><div class="ph-su">Live strategic plans · FY2025</div></div>
+        <div class="ph-ac">
+          <select class="fsel" style="width:210px;padding:6px 11px;font-size:13px">
+            <option>Thornfield Capital Group</option><option>Meridian Global Logistics</option><option>HelixBio Pharma</option>
+          </select>
+          <button class="btn btn-g btn-sm">Export</button>
+          <button class="btn btn-p btn-sm">+ Add item</button>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding:11px 16px;background:var(--s1);border:1px solid var(--b0);border-radius:var(--r2)">
+        <span class="b b-g">Active</span>
+        <span style="font-size:13px;font-weight:500">Thornfield Capital Group — FY2025 Account Plan</span>
+        <span style="font-size:12px;color:var(--t3)">v4 · Updated 22 Mar 2025 · Owner: Elena Rodriguez</span>
+      </div>
+      <div class="kg">
+        <div class="kc">
+          <div class="kch"><span>Objectives</span><span class="kcnt">4</span></div>
+          <div class="ki">
+            <div class="kcard"><div class="kct">Renew at full ARR + 5% uplift</div><div class="kcs">Dec 2025 · Elena Rodriguez</div><div style="margin-top:8px"><span class="b b-g">On track</span></div></div>
+            <div class="kcard"><div class="kct">Close APAC Operations expansion</div><div class="kcs">Q2 2025 · Elena Rodriguez</div><div style="margin-top:8px"><span class="b b-s">In progress</span></div></div>
+            <div class="kcard"><div class="kct">Qualify Risk Analytics module</div><div class="kcs">Q3 2025 · Elena Rodriguez</div><div style="margin-top:8px"><span class="b b-w">Early stage</span></div></div>
+            <div class="kcard"><div class="kct">Executive alignment — QBR cadence</div><div class="kcs">Ongoing · James Harlow</div><div style="margin-top:8px"><span class="b b-g">Active</span></div></div>
+          </div>
+        </div>
+        <div class="kc">
+          <div class="kch"><span>Initiatives</span><span class="kcnt">5</span></div>
+          <div class="ki">
+            <div class="kcard"><div class="kct">Quarterly Business Reviews</div><div class="kcs">Bi-annual · Next: June 2025</div><div style="margin-top:8px"><span class="b b-g">Active</span></div></div>
+            <div class="kcard"><div class="kct">APAC pilot programme proposal</div><div class="kcs">Submitted Mar 2025 · Awaiting board</div><div style="margin-top:8px"><span class="b b-w">Pending</span></div></div>
+            <div class="kcard"><div class="kct">Risk Analytics proof-of-concept</div><div class="kcs">Q2 2025 · With IT team</div><div style="margin-top:8px"><span class="b b-m">Planned</span></div></div>
+            <div class="kcard"><div class="kct">Executive sponsor dinner</div><div class="kcs">April 2025 · James Harlow (CTO)</div><div style="margin-top:8px"><span class="b b-s">Confirmed</span></div></div>
+            <div class="kcard"><div class="kct">Case study co-authorship</div><div class="kcs">Q3 2025 · Marketing team</div><div style="margin-top:8px"><span class="b b-m">Planned</span></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="kc" style="margin-bottom:12px">
+            <div class="kch"><span>Plan risks</span><span class="kcnt">2</span></div>
+            <div class="ki">
+              <div class="kcard" style="border-left:2px solid var(--wn)"><div class="kct">Board approval delay for APAC</div><div class="kcs" style="margin-top:4px">Mitigation: Provide business case data by 4 Apr</div></div>
+              <div class="kcard" style="border-left:2px solid var(--t4)"><div class="kct">James Harlow role change risk</div><div class="kcs" style="margin-top:4px">Mitigation: Build relationship with Deputy CTO</div></div>
+            </div>
+          </div>
+          <div class="kc">
+            <div class="kch"><span>Milestones</span><span class="kcnt">4</span></div>
+            <div class="ki">
+              <div class="kcard"><div class="rsb"><div class="kct">Q1 QBR delivered</div><span class="b b-g" style="font-size:10px">Done</span></div><div class="kcs">Mar 2025</div></div>
+              <div class="kcard"><div class="rsb"><div class="kct">APAC proposal submitted</div><span class="b b-s" style="font-size:10px">Submitted</span></div><div class="kcs">Mar 2025</div></div>
+              <div class="kcard"><div class="rsb"><div class="kct">Board APAC decision</div><span class="b b-w" style="font-size:10px">Awaited</span></div><div class="kcs">Apr 2025</div></div>
+              <div class="kcard"><div class="rsb"><div class="kct">Renewal contract signed</div><span class="b b-m" style="font-size:10px">Dec</span></div><div class="kcs">Dec 2025</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ REPORTS ══ -->
+    <div id="p-reports" class="page hidden">
+      <div class="ph">
+        <div><div class="ph-ey">Management</div><div class="ph-ti">Portfolio Reports</div><div class="ph-su">AI-generated executive summaries · Ready for board and management review</div></div>
+        <div class="ph-ac"><button class="btn btn-g btn-sm">Export PDF</button><button class="btn btn-p btn-sm">Generate new</button></div>
+      </div>
+      <div class="g21" style="gap:22px">
+        <div>
+          <div class="rsb" style="margin-bottom:14px">
+            <div style="font-size:13.5px;font-weight:500">Weekly executive summary — w/c 24 March 2025</div>
+            <span class="b b-g">Published</span>
+          </div>
+          <div class="card">
+            <div class="rb">
+<h3>Executive summary</h3>
+<p>The portfolio enters this week with a materially elevated risk profile. Two strategic accounts — <span class="hi">HelixBio Pharma (£615K) and NovaCrest Health Systems (£385K)</span> — are classified Red with renewal dates in 39 and 47 days respectively. Combined, these represent <span class="hi">£1.0M in ARR at significant risk</span> due to active competitor evaluations, executive sponsor gaps, and deteriorating engagement metrics. Immediate escalation is recommended at CRO and CEO level.</p>
+
+<h3>Critical items — this week</h3>
+<ul>
+<li><strong>HelixBio Pharma</strong>: Veeva Solutions has been shortlisted in an active procurement RFP. Procurement decision expected before 30 April. Champion Dr. Chen departed March. No current executive sponsor. <strong>Recommended: CEO-to-CFO call before 4 April; authorise commercial flexibility (usage-based pricing).</strong></li>
+<li><strong>NovaCrest Health Systems</strong>: Exec sponsor Sir Graham Whitmore resigned January 2025. New CIO Dr. Aisha Patel has had no contact with our team. Active users down 44%. Renewal 3 May. <strong>Recommended: Senior executive introduction to Dr. Patel this week; approve crisis retention package if needed.</strong></li>
+</ul>
+
+<h3>Positive developments</h3>
+<ul>
+<li><span class="hu">Thornfield Capital Group</span>: APAC Operations expansion proposal submitted — £180K, 78% probability, board decision expected April. Executive sponsor dinner confirmed for April.</li>
+<li><span class="hu">Axiom Aerospace</span>: Renewal signed February 2026 (early close), +8% ARR uplift agreed. Enterprise tier upgrade discussion initiated — £85K, 68% probability.</li>
+<li><span class="hu">Meridian Global Logistics</span>: QBR delivered positively. Finance Module expansion conversation opened — £95K, 72% probability.</li>
+</ul>
+
+<h3>Portfolio metrics — week ending 25 March 2025</h3>
+<ul>
+<li>Total portfolio ARR: <strong>£2,963,000</strong> (no change)</li>
+<li>ARR at critical risk (renewal probability &lt;45%): <strong>£1,000,000</strong></li>
+<li>Weighted renewal forecast (90 days): <strong>£1,740,000</strong></li>
+<li>Gross growth pipeline: <strong>£511,000</strong> (weighted: £341,000)</li>
+<li>Average account health score: <strong>62</strong> (↓7 vs prior week — driven by HelixBio decline)</li>
+<li>Open risk events: <strong>6</strong> (3 critical, 2 high, 1 medium)</li>
+</ul>
+
+<h3>Recommended board-level actions</h3>
+<ul>
+<li><strong>Authorise CEO involvement</strong> in HelixBio Pharma — a direct CFO-to-CEO call is the highest-probability action to hold this account before the Veeva decision is made</li>
+<li><strong>Approve £50K commercial concession authority</strong> for HelixBio — a usage-based model at 15% reduction protects the £615K ARR and removes the procurement objection</li>
+<li><strong>Assign an executive sponsor</strong> to NovaCrest Health immediately — Dr. Patel needs a senior relationship before 3 May or this account is likely lost</li>
+<li><strong>Greenlight Thornfield APAC expansion</strong> commercial terms — £180K opportunity at 78% probability. Contract close in Q2 if authorisation moves this month</li>
+</ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs">
+          <div class="card">
+            <div class="ch"><span class="ct">Health trend (8 weeks)</span></div>
+            <div class="cb" style="padding:16px 20px">
+              <div class="rsb" style="margin-bottom:16px">
+                <div><div style="font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t3)">Current avg</div><div style="font-family:var(--f3);font-size:22px;font-weight:500;margin-top:4px">62 <span style="font-size:12px;color:var(--rd)">↓7</span></div></div>
+                <div><div style="font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--t3)">ARR at risk</div><div style="font-family:var(--f3);font-size:22px;font-weight:500;color:var(--rd);margin-top:4px">£1.0M</div></div>
+              </div>
+              <div class="sp">
+                <div class="spb" style="height:78%;background:var(--s5)"></div>
+                <div class="spb" style="height:80%;background:var(--s5)"></div>
+                <div class="spb" style="height:82%;background:rgba(79,131,255,.35)"></div>
+                <div class="spb" style="height:84%;background:rgba(79,131,255,.45)"></div>
+                <div class="spb" style="height:78%;background:rgba(79,131,255,.55)"></div>
+                <div class="spb" style="height:74%;background:rgba(240,168,41,.55)"></div>
+                <div class="spb" style="height:68%;background:rgba(240,168,41,.7)"></div>
+                <div class="spb" style="height:62%;background:var(--rd);opacity:.8"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:9.5px;color:var(--t4);margin-top:5px;font-family:var(--f3)">
+                <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span style="color:var(--rd)">Mar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ch"><span class="ct">All accounts — health</span></div>
+            <div class="cb" style="padding:14px 20px;display:flex;flex-direction:column;gap:8px">
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">HelixBio Pharma</span><div class="hc"><span class="hn r">27</span><div class="hb" style="width:70px"><div class="hf r" style="width:27%"></div></div></div></div>
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">NovaCrest Health</span><div class="hc"><span class="hn r">31</span><div class="hb" style="width:70px"><div class="hf r" style="width:31%"></div></div></div></div>
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">Vantage Retail</span><div class="hc"><span class="hn w">52</span><div class="hb" style="width:70px"><div class="hf w" style="width:52%"></div></div></div></div>
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">TerraGroup</span><div class="hc"><span class="hn w">61</span><div class="hb" style="width:70px"><div class="hf w" style="width:61%"></div></div></div></div>
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">Axiom Aerospace</span><div class="hc"><span class="hn g">76</span><div class="hb" style="width:70px"><div class="hf g" style="width:76%"></div></div></div></div>
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">Crestline Telecom</span><div class="hc"><span class="hn g">79</span><div class="hb" style="width:70px"><div class="hf g" style="width:79%"></div></div></div></div>
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">Meridian Global</span><div class="hc"><span class="hn g">83</span><div class="hb" style="width:70px"><div class="hf g" style="width:83%"></div></div></div></div>
+              <div class="rsb"><span style="font-size:12px;color:var(--t2)">Thornfield Capital</span><div class="hc"><span class="hn g">91</span><div class="hb" style="width:70px"><div class="hf g" style="width:91%"></div></div></div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="ch"><span class="ct">Renewal forecast (90 days)</span></div>
+            <div class="cb" style="padding:14px 20px">
+              <div class="pr"><span class="pl">NovaCrest (3 May)</span><div class="pt"><div class="pf" style="width:38%;background:var(--rd)"></div></div><span class="pv" style="color:var(--rd)">38%</span></div>
+              <div class="pr"><span class="pl">HelixBio (12 May)</span><div class="pt"><div class="pf" style="width:32%;background:var(--rd)"></div></div><span class="pv" style="color:var(--rd)">32%</span></div>
+              <div class="pr"><span class="pl">Vantage (4 Jun)</span><div class="pt"><div class="pf" style="width:64%;background:var(--wn)"></div></div><span class="pv" style="color:var(--wn)">64%</span></div>
+              <div class="pr"><span class="pl">TerraGroup (14 Jul)</span><div class="pt"><div class="pf" style="width:68%;background:var(--wn)"></div></div><span class="pv" style="color:var(--wn)">68%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stub pages for nav targets -->
+    <div id="p-account-novacrest" class="page hidden">
+      <div class="crumb" onclick="go('accounts')"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M7.5 1L2.5 5.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> All accounts</div>
+      <div class="ahero r"><div class="ahero-glow r"></div>
+        <div class="rsb" style="margin-bottom:12px"><div><div class="an">NovaCrest Health Systems</div><div class="am2"><span>Healthcare</span><s>·</s><span>Enterprise</span><s>·</s><span>Strategic tier</span></div></div><div class="row" style="gap:8px"><button class="btn btn-g btn-sm" onclick="go('meetings')">Prep meeting</button><button class="btn btn-p btn-sm">+ Add note</button></div></div>
+        <div class="row" style="gap:6px"><span class="b b-r">Red account</span><span class="b b-p">Strategic</span><span class="tag">Clinical Compliance</span><span class="tag">Audit Trail</span></div>
+      </div>
+      <div class="kr kr-4"><div class="kpi"><div class="kl">Health score</div><div class="kv r">31</div></div><div class="kpi"><div class="kl">ARR</div><div class="kv">£385K</div><div class="kd dn">Renewal: 3 May 2025</div></div><div class="kpi"><div class="kl">Renewal probability</div><div class="kv r">38%</div></div><div class="kpi"><div class="kl">Open risks</div><div class="kv r">3</div><div class="kd dn">2 critical</div></div></div>
+      <div class="gs">
+        <div class="ri c"><div class="rt">Executive sponsor Sir Graham Whitmore resigned January 2025</div><div class="rx">Our primary executive relationship over 4 years has ended. New CIO Dr. Aisha Patel appointed February — no contact established. Renewal in 39 days with no executive sponsor in place.</div><div class="rm"><span class="b b-r">Critical</span><span class="tag">Executive change</span></div></div>
+        <div class="ri h"><div class="rt">Active users down 44% — Jan to Mar 2025</div><div class="rx">Platform logins: 310/week in November 2024 → 174/week in March 2025. Root cause unclear — training gap or disengagement. No formal support tickets raised by the account, which is itself a concern.</div><div class="rm"><span class="b b-w">High</span><span class="tag">Adoption drop</span></div></div>
+        <div class="ri h"><div class="rt">New IT Director: former iCompliance employee</div><div class="rx">Newly appointed IT Director (Brendan Walsh) joined from iCompliance in February 2025. Has prior familiarity with competitor platform. Potential conflict of interest in platform evaluation decisions.</div><div class="rm"><span class="b b-w">High</span><span class="tag">Competitor risk</span></div></div>
+      </div>
+    </div>
+
+    <div id="p-account-thornfield" class="page hidden">
+      <div class="crumb" onclick="go('accounts')"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M7.5 1L2.5 5.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> All accounts</div>
+      <div class="ahero g"><div class="ahero-glow g"></div>
+        <div class="rsb" style="margin-bottom:12px"><div><div class="an">Thornfield Capital Group</div><div class="am2"><span>Financial Services</span><s>·</s><span>Enterprise</span><s>·</s><span>Strategic tier</span></div></div><div class="row" style="gap:8px"><button class="btn btn-g btn-sm" onclick="go('meetings')">Prep meeting</button><button class="btn btn-p btn-sm">+ Add note</button></div></div>
+        <div class="row" style="gap:6px"><span class="b b-g">Green account</span><span class="b b-p">Strategic</span><span class="tag">Enterprise Suite</span><span class="tag">API Access</span><span class="tag">Analytics</span></div>
+      </div>
+      <div class="kr kr-4"><div class="kpi"><div class="kl">Health score</div><div class="kv g">91</div></div><div class="kpi"><div class="kl">ARR</div><div class="kv">£720K</div><div class="kd up">Renewal: 18 Dec 2025</div></div><div class="kpi"><div class="kl">Renewal probability</div><div class="kv g">96%</div></div><div class="kpi"><div class="kl">Growth pipeline</div><div class="kv g">£245K</div><div class="kd up">2 opportunities</div></div></div>
+      <div class="card"><div class="cb"><p style="font-size:13.5px;color:var(--t2);line-height:1.78">Tier-1 UK investment management firm. Full platform deployment across 3 divisions (Equities, Fixed Income, Alternative Investments). Using Enterprise Suite, API Access, and Analytics modules. Exec sponsor: James Harlow (CTO) — active champion and strong relationship. APAC Operations expansion proposal currently under board review — £180K opportunity. Risk Analytics module qualification underway. Renewal tracking at 96% confidence.</p></div></div>
+    </div>
+
+    <div id="p-account-meridian" class="page hidden">
+      <div class="crumb" onclick="go('accounts')"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M7.5 1L2.5 5.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> All accounts</div>
+      <div class="ahero g"><div class="ahero-glow g"></div>
+        <div class="rsb" style="margin-bottom:12px"><div><div class="an">Meridian Global Logistics</div><div class="am2"><span>Logistics</span><s>·</s><span>Enterprise</span><s>·</s><span>Strategic tier</span></div></div><div class="row" style="gap:8px"><button class="btn btn-g btn-sm" onclick="go('meetings')">Prep meeting</button><button class="btn btn-p btn-sm">+ Add note</button></div></div>
+        <div class="row" style="gap:6px"><span class="b b-g">Green account</span><span class="b b-p">Strategic</span><span class="tag">Fleet Suite</span><span class="tag">Compliance</span></div>
+      </div>
+      <div class="kr kr-4"><div class="kpi"><div class="kl">Health score</div><div class="kv g">83</div></div><div class="kpi"><div class="kl">ARR</div><div class="kv">£425K</div><div class="kd up">Renewal: 20 Aug 2025</div></div><div class="kpi"><div class="kl">Renewal probability</div><div class="kv g">91%</div></div><div class="kpi"><div class="kl">Growth pipeline</div><div class="kv g">£95K</div><div class="kd up">Finance Module</div></div></div>
+      <div class="card"><div class="cb"><p style="font-size:13.5px;color:var(--t2);line-height:1.78">Pan-European logistics group — 9,200 employees across 16 countries. Using Fleet Suite and Compliance modules. Champion: Oliver Strand (VP Operations), active and positive. QBR delivered March 2025 — positive outcome. Finance Module expansion discussion opened: £95K opportunity, 72% probability. Renewal on track at 91% confidence.</p></div></div>
+    </div>
+
+    <div id="p-account-vantage" class="page hidden">
+      <div class="crumb" onclick="go('accounts')"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M7.5 1L2.5 5.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> All accounts</div>
+      <div class="ahero w"><div class="ahero-glow w"></div>
+        <div class="an">Vantage Retail Holdings</div>
+        <div class="am2"><span>Retail</span><s>·</s><span>Enterprise</span><s>·</s><span>Growth tier</span></div>
+        <div style="margin-top:10px"><span class="b b-w">Amber account</span></div>
+      </div>
+      <div class="kr kr-4"><div class="kpi"><div class="kl">Health score</div><div class="kv w">52</div></div><div class="kpi"><div class="kl">ARR</div><div class="kv">£195K</div><div class="kd wn">Renewal: 4 Jun 2025</div></div><div class="kpi"><div class="kl">Renewal probability</div><div class="kv w">64%</div></div><div class="kpi"><div class="kl">Open risks</div><div class="kv w">1</div><div class="kd wn">Champion departure</div></div></div>
+      <div class="ri h"><div class="rt">Champion Claire Hodges moved to new division — Feb 2025</div><div class="rx">Our primary contact at Vantage for 2 years moved to the Logistics division. Replacement Dominic Reeves (Category Director) is the named contact but has not responded to two outreach attempts. Renewal is June — the relationship gap must be bridged before then.</div><div class="rm"><span class="b b-w">High</span><span class="tag">Champion departure</span></div></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ══ DEMO TOUR BAR ══ -->
+<div id="tour-bar" class="hidden">
+  <div class="tb-section">
+    <div class="tb-label">
+      <div class="tb-eyebrow">KAM AI Demo</div>
+      <div id="tb-name" class="tb-name">Command Center</div>
+    </div>
+  </div>
+  <div class="tb-section">
+    <div id="tb-desc" class="tb-desc">Portfolio intelligence and AI alerts at a glance</div>
+  </div>
+  <div class="tb-section" style="border-right:none">
+    <div class="tb-nav">
+      <div class="tb-btn" onclick="tourNav(-1)">&#8592;</div>
+      <div id="tb-count" class="tb-count">1 / 6</div>
+      <div class="tb-btn" onclick="tourNav(+1)">&#8594;</div>
+    </div>
+  </div>
+  <div class="tb-exit" onclick="endTour()">Exit tour</div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────
+const TOUR = [
+  { page:'dashboard',        name:'Command Center',       desc:'Portfolio intelligence, AI alerts and priority action queue' },
+  { page:'account-helixbio', name:'Account Intelligence', desc:'Deep account detail — health trend, stakeholders, risks' },
+  { page:'meetings',         name:'AI Meeting Prep',      desc:'GPT-4o brief with account memory — generated in seconds' },
+  { page:'risk',             name:'Risk Portfolio',       desc:'RAG view across all accounts with AI-surfaced risk signals' },
+  { page:'growth',           name:'Growth Portfolio',     desc:'£511K in uncaptured pipeline — prioritised by AI' },
+  { page:'reports',          name:'Executive Report',     desc:'Board-ready portfolio summary generated by AI' },
+];
+
+let tourIdx = 0;
+let inTour  = false;
+
+// ── Login ─────────────────────────────────────
+function doLogin() {
+  const e = document.getElementById('le').value;
+  if (!e) return;
+  document.getElementById('login-shell').classList.add('hidden');
+  document.getElementById('app-shell').classList.remove('hidden');
+  go('dashboard');
+}
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Enter' && !document.getElementById('login-shell').classList.contains('hidden')) doLogin();
+});
+
+// ── Navigation ────────────────────────────────
+function go(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('act'));
+  const el = document.getElementById('p-' + page);
+  if (el) el.classList.remove('hidden');
+  const MAP = {dashboard:0,accounts:1,meetings:2,renewals:3,risk:4,growth:5,competitors:6,plans:7,reports:8};
+  const base = page.replace(/^account-.+/,'accounts');
+  const items = document.querySelectorAll('.ni');
+  if (MAP[base] !== undefined && items[MAP[base]]) items[MAP[base]].classList.add('act');
+}
+
+// ── Tour ──────────────────────────────────────
+function startTour() {
+  inTour = true;
+  tourIdx = 0;
+  document.getElementById('tour-bar').classList.remove('hidden');
+  renderTour();
+}
+
+function endTour() {
+  inTour = false;
+  document.getElementById('tour-bar').classList.add('hidden');
+}
+
+function tourNav(dir) {
+  tourIdx = Math.max(0, Math.min(TOUR.length - 1, tourIdx + dir));
+  renderTour();
+}
+
+function renderTour() {
+  const t = TOUR[tourIdx];
+  document.getElementById('tb-name').textContent  = t.name;
+  document.getElementById('tb-desc').textContent  = t.desc;
+  document.getElementById('tb-count').textContent = `${tourIdx + 1} / ${TOUR.length}`;
+  go(t.page);
+}
+
+// ── AI Brief ──────────────────────────────────
+function genBrief() {
+  const out = document.getElementById('brief-out');
+  const lbl = document.getElementById('brief-lbl');
+  lbl.textContent = 'HelixBio Pharma — Q2 Strategic Review';
+  out.innerHTML = '<span style="font-size:12px;color:var(--t3)">Retrieving 42 account memory chunks · Generating with GPT-4o<span class="cur"></span></span>';
+  setTimeout(() => {
+    out.innerHTML = `<h3>Account snapshot</h3><p>HelixBio Pharma · Pharmaceutical · 5 EU entities · Compliance Suite + Data Insights · ARR: £615,000 · Renewal: 12 May 2025 · Health: 27 (declining from 78 in Aug 2024)</p><h3>Meeting composition — this session</h3><p><strong>Richard Forsythe (CFO)</strong> — Economic buyer, negative, silent since January. Issued 20% vendor reduction mandate. Responds to ROI numbers and peer benchmarks — not product pitches. Has agreed to this meeting, which is a signal of residual openness.</p><p><strong>Sarah McAllister (VP Procurement)</strong> — Running the RFP independently. Has met with Veeva twice. Agreed to hold the procurement decision pending your response. This is a significant window — do not waste it.</p><p><strong>James Thornton (IT Director)</strong> — Active, supportive, limited authority. Pre-brief him privately before the meeting if possible to align on key messages.</p><h3>Key talking points</h3><ul><li><strong>Open with the ROI case, not a product pitch.</strong> Since June 2022: 38% reduction in audit prep time, zero reportable compliance incidents across 5 entities, €2.1M in estimated regulatory penalties avoided. Give Forsythe a number he can take to his board.</li><li><strong>Reframe the total cost of switching.</strong> Migration cost for 5 entities to a new platform: €800K–1.2M + 9–14 months disruption. The 20% contract saving they are pursuing could easily cost 3× in transition.</li><li><strong>Present commercial options before they are demanded.</strong> Three scenarios: (a) current terms +3% CPI, (b) usage-based at 15% reduction with floors, (c) multi-year with 18% reduction and locked pricing.</li><li><strong>Request CEO-to-Forsythe call.</strong> The highest-value action from this meeting. If agreed, escalate to your CEO by Thursday.</li><li><strong>Address Veeva directly.</strong> Ask McAllister: "What would make our proposal definitively stronger for you?" Her answer tells you the real decision criteria.</li></ul><h3>Risk items to manage</h3><ul><li><strong>Champion gap:</strong> Do not reference Dr. Chen's departure — it signals instability. Use Thornton as the continuity voice.</li><li><strong>McAllister disengagement:</strong> If she defers to Forsythe throughout, request a bilateral this week before she forms her RFP recommendation.</li><li><strong>Short meeting:</strong> CFOs leave early. Open with the 90-second ROI summary. Leave commercial scenarios as a printed one-pager regardless.</li></ul><h3>Recommended actions from this meeting</h3><ul><li>Leave a written commercial proposal with three pricing scenarios</li><li>Secure a CEO-to-Forsythe call date — before 4 April</li><li>Bilateral with McAllister to understand RFP scoring criteria</li><li>Ask Thornton to send procurement evaluation timeline within 48 hours</li></ul>`;
+  }, 1800);
+}
+
+// ── Follow-ups ────────────────────────────────
+function genFollow(type) {
+  const sec = document.getElementById('follow-sec');
+  const out = document.getElementById('follow-out');
+  const lbl = document.getElementById('follow-lbl');
+  const labels = { email:'Recap email — HelixBio Pharma', crm:'CRM note', internal:'Internal summary' };
+  lbl.textContent = labels[type];
+  sec.classList.remove('hidden');
+  out.innerHTML = `<span style="color:var(--t3);font-size:11px">Generating<span class="cur"></span></span>`;
+  const content = {
+email:`Subject: Strategic Review — next steps and commercial proposal
+
+Dear Richard, Sarah, and James,
+
+Thank you for your time this morning. I wanted to confirm our key discussion points and next steps while they are fresh.
+
+What we discussed:
+· The 20% cost reduction mandate — we acknowledged this directly and have prepared revised commercial scenarios for your consideration
+· The ongoing vendor evaluation — we understand the process and respect it; our goal is to ensure you have all the information you need to make the right decision for HelixBio
+· ROI to date — 38% reduction in audit preparation time, zero compliance incidents across 5 entities since June 2022, and €2.1M in estimated regulatory risk avoided
+
+Agreed actions:
+· Elena → Formal commercial proposal with three pricing scenarios by Friday 28 March
+· Richard → In-principle agreement to a CEO-level call before 4 April (calendar invite to follow from our CEO's office)
+· Sarah → Bilateral call to discuss RFP evaluation criteria — I will send a time proposal tomorrow
+· James → Procurement evaluation timeline to Elena by Wednesday
+
+I am genuinely committed to finding a structure that works for HelixBio. The compliance platform has delivered measurable value and I want to make sure that story is clearly reflected in whatever commercial outcome we reach.
+
+Best regards,
+Elena Rodriguez | Key Account Manager`,
+crm:`Date: 25 March 2025 | Type: Strategic Renewal Review
+Attendees: R. Forsythe (CFO), S. McAllister (VP Procurement), J. Thornton (IT Director)
+
+Summary: CFO confirmed 20% vendor cost reduction mandate is in effect. Procurement (McAllister) is running RFP evaluation — has met with Veeva twice; agreed to hold decision pending our commercial response. IT (Thornton) remains supportive. Warmer tone from Forsythe than expected once ROI data was presented. Key commitment: CEO-to-CFO call agreed in principle.
+
+Risk level: Critical. Probability adjusted: 38% → 44% pending commercial response.
+
+Actions:
+— Elena: Commercial proposal (3 scenarios) by 28 Mar
+— Elena: Arrange CEO-CFO call before 4 Apr
+— Elena: Bilateral with McAllister re RFP criteria
+— James Thornton: Send procurement timeline by 27 Mar
+
+Next milestone: Commercial proposal acceptance / rejection by 4 Apr`,
+internal:`Meeting: HelixBio Pharma — Strategic Review, 25 Mar 2025
+Internal summary — not for distribution
+
+Tone: More constructive than expected. Forsythe genuinely engaged once we presented the ROI figures. McAllister's admission that Veeva was "impressive but expensive" is our most important signal — cost is her objection to switching, which means we can win on value.
+
+Key intelligence:
+• Veeva has been in twice. McAllister shortlisted them. But she hasn't made a recommendation yet.
+• Forsythe agreed to a CEO-level call — this is the single most valuable outcome of the meeting.
+• Thornton will be the internal sponsor for our proposal — he is credible and motivated.
+
+Probability assessment: Revised from 32% → 45% if we execute this week. Key actions are time-sensitive.
+
+Recommendation: Escalate to CRO and CEO by EOD today. Authorise commercial flexibility. Get CEO calendar blocked for a call with Forsythe before 4 April or this window closes.`
+  };
+  setTimeout(() => { out.textContent = content[type] || ''; }, 1200);
+}
+</script>
+</body>
+</html>
