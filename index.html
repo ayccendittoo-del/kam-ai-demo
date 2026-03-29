@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KAM AI — Account Intelligence Platform</title>
+<title>KAM Account Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════
-   KAM AI DEMO — Design System "Deep Signal"
+   KAM Account Intelligence — Design System "Deep Signal"
    Syne (display) · Outfit (UI) · JetBrains Mono (data)
    ════════════════════════════════════════════════ */
 :root {
@@ -413,9 +413,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     LOGIN
-     ══════════════════════════════════════════ -->
 <div id="login-shell">
   <div class="lp">
     <div class="lm">
@@ -427,24 +424,20 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
           <circle cx="14" cy="5" r="2.8" fill="rgba(255,255,255,.12)"/>
         </svg>
       </div>
-      <span class="lname">KAM AI <em>Intelligence</em></span>
-      <span class="ltag">Demo</span>
+      <span class="lname">KAM <em>Account Intelligence</em></span>
+      <span class="ltag">Internal</span>
     </div>
     <div class="lh">Welcome back</div>
-    <div class="ls">Sign in to your account intelligence platform</div>
-    <div class="fl"><label>Work email</label><input type="email" id="le" value="elena.rodriguez@acme.com"></div>
+    <div class="ls">Sign in to access your KAM account intelligence workspace</div>
+    <div class="fl"><label>Work email</label><input type="email" id="le" value="your.name@company.com"></div>
     <div class="fl"><label>Password</label><input type="password" id="lp" value="••••••••"></div>
-    <button class="lbtn" onclick="doLogin()">Access KAM AI →</button>
-    <div class="ldemo">Demo environment &nbsp;·&nbsp; <em>elena.rodriguez@acme.com</em></div>
+    <button class="lbtn" onclick="doLogin()">Access workspace →</button>
+    <div class="ldemo">Internal preview &nbsp;·&nbsp; <em>your.name@company.com</em></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     APP
-     ══════════════════════════════════════════ -->
 <div id="app-shell" class="hidden">
 
-  <!-- SIDEBAR -->
   <nav class="sb">
     <div class="sb-brand">
       <div class="sb-mark">
@@ -454,8 +447,8 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
           <circle cx="10.5" cy="3" r="1.3" fill="rgba(255,255,255,.7)"/>
         </svg>
       </div>
-      <span class="sb-title">KAM AI</span>
-      <span class="sb-tag">Demo</span>
+      <span class="sb-title">KAM Account Intelligence</span>
+      <span class="sb-tag">Internal</span>
     </div>
 
     <div class="ss">Intelligence</div>
@@ -503,20 +496,18 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
     </div>
 
     <div class="sb-u">
-      <div class="av" style="background:linear-gradient(135deg,#3A5FCC,var(--sig))">ER</div>
-      <div><div style="font-size:13px;font-weight:500">Elena Rodriguez</div><div style="font-size:11px;color:var(--t3);margin-top:1px">Key Account Manager</div></div>
+      <div class="av" style="background:linear-gradient(135deg,#3A5FCC,var(--sig))">YN</div>
+      <div><div style="font-size:13px;font-weight:500">Your Name</div><div style="font-size:11px;color:var(--t3);margin-top:1px">Key Account Manager</div></div>
     </div>
   </nav>
 
-  <!-- MAIN -->
   <main class="main">
 
-    <!-- ══ COMMAND CENTER ══ -->
     <div id="p-dashboard" class="page">
       <div class="ph">
         <div>
           <div class="ph-ey">Tuesday, 25 March 2025</div>
-          <div class="ph-ti">Good morning, Elena</div>
+          <div class="ph-ti">Good morning</div>
           <div class="ph-su">8 accounts &middot; £2.96M portfolio ARR &middot; <span style="color:var(--rd);font-weight:500">2 critical alerts require immediate action</span></div>
         </div>
         <div class="ph-ac">
@@ -525,7 +516,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
         </div>
       </div>
 
-      <!-- KPIs -->
       <div class="kr kr-5">
         <div class="kpi"><div class="kl">Portfolio ARR</div><div class="kv" id="k-arr">£2.96M</div><div class="kd">8 active accounts</div></div>
         <div class="kpi"><div class="kl">ARR at critical risk</div><div class="kv r" id="k-risk">£1.0M</div><div class="kd dn">2 accounts, &lt;45 days</div></div>
@@ -536,7 +526,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
 
       <div class="g21" style="gap:22px">
         <div>
-          <!-- Critical alerts -->
           <div class="sh" style="margin-top:0">Critical alerts — action required today</div>
           <div class="gs">
             <div class="ac r" onclick="go('account-helixbio')">
@@ -570,7 +559,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
             </div>
           </div>
 
-          <!-- Priority accounts table -->
           <div class="sh">Portfolio — all accounts</div>
           <div class="card">
             <div class="tw">
@@ -591,18 +579,13 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
           </div>
         </div>
 
-        <!-- Right column -->
         <div class="gs">
-
-          <!-- Portfolio donut -->
           <div class="card">
             <div class="ch"><span class="ct">Portfolio health</span><span style="font-size:11.5px;color:var(--t3)">by ARR</span></div>
             <div class="cb" style="padding:18px 20px">
               <div style="display:flex;align-items:center;gap:20px">
                 <div style="flex-shrink:0">
                   <svg width="100" height="100" viewBox="0 0 100 100" style="transform:rotate(-90deg)">
-                    <!-- circumference: 2*π*36 = 226.2 -->
-                    <!-- Green: 56.4% = 127.6 -->
                     <circle cx="50" cy="50" r="36" fill="none" stroke="var(--s4)" stroke-width="10"/>
                     <circle cx="50" cy="50" r="36" fill="none" stroke="var(--go)" stroke-width="10" stroke-dasharray="127.6 98.6" stroke-dashoffset="0" stroke-linecap="round"/>
                     <circle cx="50" cy="50" r="36" fill="none" stroke="var(--wn)" stroke-width="10" stroke-dasharray="22.4 203.8" stroke-dashoffset="-129.6" stroke-linecap="round"/>
@@ -618,7 +601,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
             </div>
           </div>
 
-          <!-- AI recommendations -->
           <div class="card">
             <div class="ch"><span class="ct">AI recommended actions</span><span style="font-size:11px;color:var(--t3);font-family:var(--f3)">GPT-4o · 2h ago</span></div>
             <div class="cb" style="padding:14px 18px;display:flex;flex-direction:column;gap:10px">
@@ -640,7 +622,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
             </div>
           </div>
 
-          <!-- Activity feed -->
           <div class="card">
             <div class="ch"><span class="ct">Recent activity</span></div>
             <div class="cb" style="padding:18px 20px">
@@ -657,7 +638,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ ACCOUNTS LIST ══ -->
     <div id="p-accounts" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Accounts</div><div class="ph-su">8 accounts &middot; £2.96M total ARR &middot; 2 red &middot; 2 amber &middot; 4 green</div></div>
@@ -674,21 +654,20 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
           <table>
             <thead><tr><th>Account</th><th>Industry</th><th>Health</th><th>Status</th><th>ARR</th><th>Renewal</th><th>Owner</th></tr></thead>
             <tbody>
-              <tr onclick="go('account-helixbio')"><td><div class="tn">HelixBio Pharma</div></td><td class="dim">Pharmaceutical</td><td><div class="hc"><span class="hn r">27</span><div class="hb"><div class="hf r" style="width:27%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£615K</td><td class="mo" style="color:var(--rd)">12 May</td><td class="dim">Elena R.</td></tr>
-              <tr onclick="go('account-novacrest')"><td><div class="tn">NovaCrest Health Systems</div></td><td class="dim">Healthcare</td><td><div class="hc"><span class="hn r">31</span><div class="hb"><div class="hf r" style="width:31%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£385K</td><td class="mo" style="color:var(--rd)">3 May</td><td class="dim">Elena R.</td></tr>
-              <tr onclick="go('account-vantage')"><td><div class="tn">Vantage Retail Holdings</div></td><td class="dim">Retail</td><td><div class="hc"><span class="hn w">52</span><div class="hb"><div class="hf w" style="width:52%"></div></div></div></td><td><span class="b b-w">Amber</span></td><td class="mo">£195K</td><td class="mo">4 Jun</td><td class="dim">Elena R.</td></tr>
+              <tr onclick="go('account-helixbio')"><td><div class="tn">HelixBio Pharma</div></td><td class="dim">Pharmaceutical</td><td><div class="hc"><span class="hn r">27</span><div class="hb"><div class="hf r" style="width:27%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£615K</td><td class="mo" style="color:var(--rd)">12 May</td><td class="dim">You</td></tr>
+              <tr onclick="go('account-novacrest')"><td><div class="tn">NovaCrest Health Systems</div></td><td class="dim">Healthcare</td><td><div class="hc"><span class="hn r">31</span><div class="hb"><div class="hf r" style="width:31%"></div></div></div></td><td><span class="b b-r">Red</span></td><td class="mo">£385K</td><td class="mo" style="color:var(--rd)">3 May</td><td class="dim">You</td></tr>
+              <tr onclick="go('account-vantage')"><td><div class="tn">Vantage Retail Holdings</div></td><td class="dim">Retail</td><td><div class="hc"><span class="hn w">52</span><div class="hb"><div class="hf w" style="width:52%"></div></div></div></td><td><span class="b b-w">Amber</span></td><td class="mo">£195K</td><td class="mo">4 Jun</td><td class="dim">You</td></tr>
               <tr><td><div class="tn">TerraGroup Construction</div></td><td class="dim">Construction</td><td><div class="hc"><span class="hn w">61</span><div class="hb"><div class="hf w" style="width:61%"></div></div></div></td><td><span class="b b-w">Amber</span></td><td class="mo">£98K</td><td class="mo">14 Jul</td><td class="dim">Marcus T.</td></tr>
-              <tr><td><div class="tn">Crestline Telecom</div></td><td class="dim">Telecoms</td><td><div class="hc"><span class="hn g">79</span><div class="hb"><div class="hf g" style="width:79%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£235K</td><td class="mo">8 Jan</td><td class="dim">Elena R.</td></tr>
-              <tr><td><div class="tn">Axiom Aerospace</div></td><td class="dim">Aerospace</td><td><div class="hc"><span class="hn g">76</span><div class="hb"><div class="hf g" style="width:76%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£290K</td><td class="mo">18 Feb</td><td class="dim">Elena R.</td></tr>
-              <tr onclick="go('account-meridian')"><td><div class="tn">Meridian Global Logistics</div></td><td class="dim">Logistics</td><td><div class="hc"><span class="hn g">83</span><div class="hb"><div class="hf g" style="width:83%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£425K</td><td class="mo">20 Aug</td><td class="dim">Elena R.</td></tr>
-              <tr onclick="go('account-thornfield')"><td><div class="tn">Thornfield Capital Group</div></td><td class="dim">Financial Services</td><td><div class="hc"><span class="hn g">91</span><div class="hb"><div class="hf g" style="width:91%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£720K</td><td class="mo">18 Dec</td><td class="dim">Elena R.</td></tr>
+              <tr><td><div class="tn">Crestline Telecom</div></td><td class="dim">Telecoms</td><td><div class="hc"><span class="hn g">79</span><div class="hb"><div class="hf g" style="width:79%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£235K</td><td class="mo">8 Jan</td><td class="dim">You</td></tr>
+              <tr><td><div class="tn">Axiom Aerospace</div></td><td class="dim">Aerospace</td><td><div class="hc"><span class="hn g">76</span><div class="hb"><div class="hf g" style="width:76%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£290K</td><td class="mo">18 Feb</td><td class="dim">You</td></tr>
+              <tr onclick="go('account-meridian')"><td><div class="tn">Meridian Global Logistics</div></td><td class="dim">Logistics</td><td><div class="hc"><span class="hn g">83</span><div class="hb"><div class="hf g" style="width:83%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£425K</td><td class="mo">20 Aug</td><td class="dim">You</td></tr>
+              <tr onclick="go('account-thornfield')"><td><div class="tn">Thornfield Capital Group</div></td><td class="dim">Financial Services</td><td><div class="hc"><span class="hn g">91</span><div class="hb"><div class="hf g" style="width:91%"></div></div></div></td><td><span class="b b-g">Green</span></td><td class="mo">£720K</td><td class="mo">18 Dec</td><td class="dim">You</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
 
-    <!-- ══ ACCOUNT DETAIL — HELIXBIO ══ -->
     <div id="p-account-helixbio" class="page hidden">
       <div class="crumb" onclick="go('accounts')"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M7.5 1L2.5 5.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> All accounts</div>
       <div class="ahero r">
@@ -696,7 +675,7 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
         <div class="rsb" style="margin-bottom:12px">
           <div>
             <div class="an">HelixBio Pharma</div>
-            <div class="am2"><span>Pharmaceutical</span><s>·</s><span>Enterprise</span><s>·</s><span>Strategic tier</span><s>·</s><span>Owner: Elena Rodriguez</span></div>
+            <div class="am2"><span>Pharmaceutical</span><s>·</s><span>Enterprise</span><s>·</s><span>Strategic tier</span><s>·</s><span>Owner: Your Name</span></div>
           </div>
           <div class="row" style="gap:8px">
             <button class="btn btn-g btn-sm" onclick="go('meetings')">Prep meeting</button>
@@ -730,11 +709,9 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
 
       <div class="g2" style="gap:22px">
         <div class="gs">
-          <!-- Summary -->
           <div class="sh" style="margin-top:0">Account intelligence</div>
           <div class="card"><div class="cb" style="padding:18px 22px"><p style="font-size:13.5px;color:var(--t2);line-height:1.78">Pan-European pharmaceutical group operating across 5 entities. Using our Compliance Suite and Data Insights modules since June 2022. ARR: £615,000. Critical renewal in 47 days. The account entered a risk state in Q1 2025 when the CFO issued a 20% vendor cost reduction mandate and procurement — acting independently of IT — initiated a parallel evaluation with Veeva Solutions. Long-term champion Dr. Emily Chen (Head of Compliance) stepped down in March and has not been replaced. Our position is held largely by IT Director James Thornton, who remains supportive but cannot unilaterally halt the RFP process.</p></div></div>
 
-          <!-- Health trend -->
           <div class="sh">Health score trend — last 8 months</div>
           <div class="card"><div class="cb" style="padding:16px 22px 14px">
             <div class="trend-wrap">
@@ -745,10 +722,8 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
                     <stop offset="100%" stop-color="var(--rd)" stop-opacity="0"/>
                   </linearGradient>
                 </defs>
-                <!-- Health trend line: 78→76→72→68→60→51→38→27 -->
                 <path d="M0,9 L57,12 L114,18 L171,26 L228,38 L285,48 L342,62 L400,71" stroke="var(--rd)" stroke-width="1.8" stroke-linecap="round"/>
                 <path d="M0,9 L57,12 L114,18 L171,26 L228,38 L285,48 L342,62 L400,71 L400,80 L0,80 Z" fill="url(#tg)"/>
-                <!-- Dots -->
                 <circle cx="0"   cy="9"  r="3" fill="var(--rd)" opacity=".5"/>
                 <circle cx="57"  cy="12" r="3" fill="var(--rd)" opacity=".5"/>
                 <circle cx="114" cy="18" r="3" fill="var(--rd)" opacity=".5"/>
@@ -767,7 +742,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
             </div>
           </div></div>
 
-          <!-- Risk events -->
           <div class="sh">Open risk events</div>
           <div class="gs">
             <div class="ri c">
@@ -789,7 +763,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
         </div>
 
         <div class="gs">
-          <!-- Stakeholder map -->
           <div class="sh" style="margin-top:0">Stakeholder intelligence</div>
           <div class="gs">
             <div class="sc">
@@ -833,7 +806,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
             </div>
           </div>
 
-          <!-- Commercial context -->
           <div class="sh">Commercial context</div>
           <div class="card"><div class="cb">
             <div class="dr"><span class="dl">Current ARR</span><span class="dv">£615,000</span></div>
@@ -848,7 +820,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ MEETING PREP ══ -->
     <div id="p-meetings" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">AI-powered · GPT-4o</div><div class="ph-ti">Meeting Prep</div><div class="ph-su">Generate pre-meeting briefs with account memory · Draft follow-ups in seconds</div></div>
@@ -891,35 +862,35 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
             </div>
             <div class="bb" id="brief-out">
 <h3>Account snapshot</h3>
-<p>HelixBio Pharma · Pan-European pharmaceutical group · 5 entities (DE, FR, UK, NL, BE) · Compliance Suite + Data Insights · ARR: £615,000 · Renewal: 12 May 2025 · Health score: 27 (critical, declining from 78 in August 2024)</p>
+<p>HelixBio Pharma · Pan-European pharmaceutical group · 5 entities (DE, FR, UK, NL, BE) · Compliance Suite + Data Insights · ARR: £615,000 · Renewal: 12 May 2025 · Health: 27 (declining from 78 in Aug 2024)</p>
 
 <h3>Relationship status in this meeting</h3>
-<p><strong>Richard Forsythe (CFO)</strong> — Economic buyer, negative sentiment, silent since January. Has issued a 20% vendor cost reduction mandate. This meeting is your best opportunity to reframe the commercial conversation before procurement makes its recommendation. He responds to ROI data and peer benchmarks, not product pitches.</p>
-<p><strong>Sarah McAllister (VP Procurement)</strong> — Running the RFP independently. Has met with Veeva twice. Meeting her in this context is a significant opportunity — she has agreed to hold the decision pending your response, which signals she is not yet committed to switching.</p>
-<p><strong>James Thornton (IT Director)</strong> — Supportive, active. Will provide technical validation but cannot override procurement. Pre-brief him privately before the meeting if possible.</p>
+<p><strong>Richard Forsythe (CFO)</strong> — Economic buyer, negative, silent since January. Issued 20% vendor reduction mandate. Responds to ROI numbers and peer benchmarks — not product pitches. Has agreed to this meeting, which is a signal of residual openness.</p>
+<p><strong>Sarah McAllister (VP Procurement)</strong> — Running the RFP independently. Has met with Veeva twice. Agreed to hold the decision pending your response. This is a significant window — do not waste it.</p>
+<p><strong>James Thornton (IT Director)</strong> — Active, supportive, limited authority. Pre-brief him privately before the meeting if possible to align on key messages.</p>
 
 <h3>Key talking points</h3>
 <ul>
-<li><strong>Open with the ROI case, not a product pitch.</strong> Since June 2022: 38% reduction in audit preparation time, 0 reportable compliance incidents in 5 entities, €2.1M estimated regulatory penalty avoided (based on incident modelling). Give Forsythe a number he can use internally.</li>
-<li><strong>Reframe the cost question.</strong> A switch to Veeva carries an estimated 9–14 month implementation delay and €800K–1.2M in migration costs across 5 entities. This is the total cost of switching, not just contract value.</li>
-<li><strong>Present usage-based commercial options before they demand them.</strong> Have 3 scenarios prepared: (a) current terms +3% CPI uplift, (b) usage-based model at 15% reduction with commitment floors, (c) multi-year deal with 18% reduction and locked pricing. Let them choose.</li>
-<li><strong>Request CEO-to-CFO call.</strong> Forsythe indicated openness. This is the highest-value action coming out of this meeting — if agreed, escalate to your CEO by Thursday.</li>
-<li><strong>Address Veeva directly.</strong> Do not avoid it. Acknowledge that they conducted a strong presentation. Ask McAllister: "What would make our proposal definitively stronger than their offering for you?" Her answer will tell you the real decision criteria.</li>
+<li><strong>Open with the ROI case, not a product pitch.</strong> Since June 2022: 38% reduction in audit prep time, zero reportable compliance incidents across 5 entities, €2.1M in estimated regulatory penalties avoided. Give Forsythe a number he can take to his board.</li>
+<li><strong>Reframe the total cost of switching.</strong> Migration cost for 5 entities to a new platform: €800K–1.2M + 9–14 months disruption. The 20% contract saving they are pursuing could easily cost 3× in transition.</li>
+<li><strong>Present commercial options before they are demanded.</strong> Three scenarios: (a) current terms +3% CPI, (b) usage-based at 15% reduction with floors, (c) multi-year with 18% reduction and locked pricing.</li>
+<li><strong>Request CEO-to-Forsythe call.</strong> The highest-value action from this meeting. If agreed, escalate to your CEO by Thursday.</li>
+<li><strong>Address Veeva directly.</strong> Ask McAllister: "What would make our proposal definitively stronger for you?" Her answer tells you the real decision criteria.</li>
 </ul>
 
 <h3>Risk items to manage</h3>
 <ul>
-<li><strong>Champion gap:</strong> Dr. Chen's departure leaves us without a credibility anchor in the compliance function. Do not reference Dr. Chen in the meeting — it signals instability. Focus on Thornton as the continuity voice.</li>
-<li><strong>McAllister disengagement:</strong> If she checks her phone or defers to Forsythe throughout, request a bilateral follow-up call this week. Do not let this meeting be the last substantive conversation before decision day.</li>
-<li><strong>Forsythe walking out early:</strong> CFOs do this. Have your 90-second ROI summary ready as an opening, and your commercial scenarios as a one-page leave-behind. The meeting can end at any moment.</li>
+<li><strong>Champion gap:</strong> Do not reference Dr. Chen's departure — it signals instability. Use Thornton as the continuity voice.</li>
+<li><strong>McAllister disengagement:</strong> If she defers to Forsythe throughout, request a bilateral this week before she forms her RFP recommendation.</li>
+<li><strong>Short meeting:</strong> CFOs leave early. Open with the 90-second ROI summary. Leave commercial scenarios as a printed one-pager regardless.</li>
 </ul>
 
-<h3>Recommended next actions from this meeting</h3>
+<h3>Recommended actions from this meeting</h3>
 <ul>
-<li>Leave a written commercial proposal with the three pricing scenarios before end of meeting</li>
-<li>Secure a date for CEO-to-Forsythe call — ideally before 4 April</li>
-<li>Request a bilateral with McAllister to understand final RFP scoring criteria</li>
-<li>Ask Thornton to send you the formal procurement evaluation timeline within 48 hours</li>
+<li>Leave a written commercial proposal with three pricing scenarios</li>
+<li>Secure a CEO-to-Forsythe call date — before 4 April</li>
+<li>Bilateral with McAllister to understand RFP scoring criteria</li>
+<li>Ask Thornton to send procurement evaluation timeline within 48 hours</li>
 </ul>
             </div>
           </div>
@@ -934,7 +905,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ RENEWALS ══ -->
     <div id="p-renewals" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Renewal Intelligence</div><div class="ph-su">8 active renewals · £2.96M pipeline · AI health scoring · Next: NovaCrest 3 May</div></div>
@@ -966,7 +936,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ RISK PORTFOLIO ══ -->
     <div id="p-risk" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Risk Portfolio</div><div class="ph-su">RAG status across all accounts · AI health-scored · Updated 25 Mar 2025, 09:00</div></div>
@@ -1040,7 +1009,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ GROWTH PORTFOLIO ══ -->
     <div id="p-growth" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">Portfolio</div><div class="ph-ti">Growth Portfolio</div><div class="ph-su">6 open opportunities · £511K pipeline ARR · £341K weighted by probability</div></div>
@@ -1100,7 +1068,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ COMPETITORS ══ -->
     <div id="p-competitors" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">Intelligence</div><div class="ph-ti">Competitor View</div><div class="ph-su">6 active mentions across 5 accounts · 2 high-threat evaluations in progress</div></div>
@@ -1151,7 +1118,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ ACCOUNT PLANS ══ -->
     <div id="p-plans" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">Strategy</div><div class="ph-ti">Account Plans</div><div class="ph-su">Live strategic plans · FY2025</div></div>
@@ -1166,15 +1132,15 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding:11px 16px;background:var(--s1);border:1px solid var(--b0);border-radius:var(--r2)">
         <span class="b b-g">Active</span>
         <span style="font-size:13px;font-weight:500">Thornfield Capital Group — FY2025 Account Plan</span>
-        <span style="font-size:12px;color:var(--t3)">v4 · Updated 22 Mar 2025 · Owner: Elena Rodriguez</span>
+        <span style="font-size:12px;color:var(--t3)">v4 · Updated 22 Mar 2025 · Owner: Your Name</span>
       </div>
       <div class="kg">
         <div class="kc">
           <div class="kch"><span>Objectives</span><span class="kcnt">4</span></div>
           <div class="ki">
-            <div class="kcard"><div class="kct">Renew at full ARR + 5% uplift</div><div class="kcs">Dec 2025 · Elena Rodriguez</div><div style="margin-top:8px"><span class="b b-g">On track</span></div></div>
-            <div class="kcard"><div class="kct">Close APAC Operations expansion</div><div class="kcs">Q2 2025 · Elena Rodriguez</div><div style="margin-top:8px"><span class="b b-s">In progress</span></div></div>
-            <div class="kcard"><div class="kct">Qualify Risk Analytics module</div><div class="kcs">Q3 2025 · Elena Rodriguez</div><div style="margin-top:8px"><span class="b b-w">Early stage</span></div></div>
+            <div class="kcard"><div class="kct">Renew at full ARR + 5% uplift</div><div class="kcs">Dec 2025 · Your Name</div><div style="margin-top:8px"><span class="b b-g">On track</span></div></div>
+            <div class="kcard"><div class="kct">Close APAC Operations expansion</div><div class="kcs">Q2 2025 · Your Name</div><div style="margin-top:8px"><span class="b b-s">In progress</span></div></div>
+            <div class="kcard"><div class="kct">Qualify Risk Analytics module</div><div class="kcs">Q3 2025 · Your Name</div><div style="margin-top:8px"><span class="b b-w">Early stage</span></div></div>
             <div class="kcard"><div class="kct">Executive alignment — QBR cadence</div><div class="kcs">Ongoing · James Harlow</div><div style="margin-top:8px"><span class="b b-g">Active</span></div></div>
           </div>
         </div>
@@ -1209,7 +1175,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- ══ REPORTS ══ -->
     <div id="p-reports" class="page hidden">
       <div class="ph">
         <div><div class="ph-ey">Management</div><div class="ph-ti">Portfolio Reports</div><div class="ph-su">AI-generated executive summaries · Ready for board and management review</div></div>
@@ -1311,7 +1276,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
       </div>
     </div>
 
-    <!-- Stub pages for nav targets -->
     <div id="p-account-novacrest" class="page hidden">
       <div class="crumb" onclick="go('accounts')"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M7.5 1L2.5 5.5L7.5 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> All accounts</div>
       <div class="ahero r"><div class="ahero-glow r"></div>
@@ -1360,11 +1324,10 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
   </main>
 </div>
 
-<!-- ══ DEMO TOUR BAR ══ -->
 <div id="tour-bar" class="hidden">
   <div class="tb-section">
     <div class="tb-label">
-      <div class="tb-eyebrow">KAM AI Demo</div>
+      <div class="tb-eyebrow">KAM Account Intelligence</div>
       <div id="tb-name" class="tb-name">Command Center</div>
     </div>
   </div>
@@ -1382,7 +1345,6 @@ td.mo{font-family:var(--f3);font-size:12.5px;font-feature-settings:"tnum" 1}
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────
 const TOUR = [
   { page:'dashboard',        name:'Command Center',       desc:'Portfolio intelligence, AI alerts and priority action queue' },
   { page:'account-helixbio', name:'Account Intelligence', desc:'Deep account detail — health trend, stakeholders, risks' },
@@ -1395,7 +1357,6 @@ const TOUR = [
 let tourIdx = 0;
 let inTour  = false;
 
-// ── Login ─────────────────────────────────────
 function doLogin() {
   const e = document.getElementById('le').value;
   if (!e) return;
@@ -1407,7 +1368,6 @@ document.addEventListener('keydown', ev => {
   if (ev.key === 'Enter' && !document.getElementById('login-shell').classList.contains('hidden')) doLogin();
 });
 
-// ── Navigation ────────────────────────────────
 function go(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('act'));
@@ -1419,7 +1379,6 @@ function go(page) {
   if (MAP[base] !== undefined && items[MAP[base]]) items[MAP[base]].classList.add('act');
 }
 
-// ── Tour ──────────────────────────────────────
 function startTour() {
   inTour = true;
   tourIdx = 0;
@@ -1445,18 +1404,16 @@ function renderTour() {
   go(t.page);
 }
 
-// ── AI Brief ──────────────────────────────────
 function genBrief() {
   const out = document.getElementById('brief-out');
   const lbl = document.getElementById('brief-lbl');
   lbl.textContent = 'HelixBio Pharma — Q2 Strategic Review';
   out.innerHTML = '<span style="font-size:12px;color:var(--t3)">Retrieving 42 account memory chunks · Generating with GPT-4o<span class="cur"></span></span>';
   setTimeout(() => {
-    out.innerHTML = `<h3>Account snapshot</h3><p>HelixBio Pharma · Pharmaceutical · 5 EU entities · Compliance Suite + Data Insights · ARR: £615,000 · Renewal: 12 May 2025 · Health: 27 (declining from 78 in Aug 2024)</p><h3>Meeting composition — this session</h3><p><strong>Richard Forsythe (CFO)</strong> — Economic buyer, negative, silent since January. Issued 20% vendor reduction mandate. Responds to ROI numbers and peer benchmarks — not product pitches. Has agreed to this meeting, which is a signal of residual openness.</p><p><strong>Sarah McAllister (VP Procurement)</strong> — Running the RFP independently. Has met with Veeva twice. Agreed to hold the procurement decision pending your response. This is a significant window — do not waste it.</p><p><strong>James Thornton (IT Director)</strong> — Active, supportive, limited authority. Pre-brief him privately before the meeting if possible to align on key messages.</p><h3>Key talking points</h3><ul><li><strong>Open with the ROI case, not a product pitch.</strong> Since June 2022: 38% reduction in audit prep time, zero reportable compliance incidents across 5 entities, €2.1M in estimated regulatory penalties avoided. Give Forsythe a number he can take to his board.</li><li><strong>Reframe the total cost of switching.</strong> Migration cost for 5 entities to a new platform: €800K–1.2M + 9–14 months disruption. The 20% contract saving they are pursuing could easily cost 3× in transition.</li><li><strong>Present commercial options before they are demanded.</strong> Three scenarios: (a) current terms +3% CPI, (b) usage-based at 15% reduction with floors, (c) multi-year with 18% reduction and locked pricing.</li><li><strong>Request CEO-to-Forsythe call.</strong> The highest-value action from this meeting. If agreed, escalate to your CEO by Thursday.</li><li><strong>Address Veeva directly.</strong> Ask McAllister: "What would make our proposal definitively stronger for you?" Her answer tells you the real decision criteria.</li></ul><h3>Risk items to manage</h3><ul><li><strong>Champion gap:</strong> Do not reference Dr. Chen's departure — it signals instability. Use Thornton as the continuity voice.</li><li><strong>McAllister disengagement:</strong> If she defers to Forsythe throughout, request a bilateral this week before she forms her RFP recommendation.</li><li><strong>Short meeting:</strong> CFOs leave early. Open with the 90-second ROI summary. Leave commercial scenarios as a printed one-pager regardless.</li></ul><h3>Recommended actions from this meeting</h3><ul><li>Leave a written commercial proposal with three pricing scenarios</li><li>Secure a CEO-to-Forsythe call date — before 4 April</li><li>Bilateral with McAllister to understand RFP scoring criteria</li><li>Ask Thornton to send procurement evaluation timeline within 48 hours</li></ul>`;
+    out.innerHTML = `<h3>Account snapshot</h3><p>HelixBio Pharma · Pharmaceutical · 5 EU entities · Compliance Suite + Data Insights · ARR: £615,000 · Renewal: 12 May 2025 · Health: 27 (declining from 78 in Aug 2024)</p><h3>Meeting composition — this session</h3><p><strong>Richard Forsythe (CFO)</strong> — Economic buyer, negative, silent since January. Issued 20% vendor reduction mandate. Responds to ROI numbers and peer benchmarks — not product pitches. Has agreed to this meeting, which is a signal of residual openness.</p><p><strong>Sarah McAllister (VP Procurement)</strong> — Running the RFP independently. Has met with Veeva twice. Agreed to hold the decision pending your response. This is a significant window — do not waste it.</p><p><strong>James Thornton (IT Director)</strong> — Active, supportive, limited authority. Pre-brief him privately before the meeting if possible to align on key messages.</p><h3>Key talking points</h3><ul><li><strong>Open with the ROI case, not a product pitch.</strong> Since June 2022: 38% reduction in audit prep time, zero reportable compliance incidents across 5 entities, €2.1M in estimated regulatory penalties avoided. Give Forsythe a number he can take to his board.</li><li><strong>Reframe the total cost of switching.</strong> Migration cost for 5 entities to a new platform: €800K–1.2M + 9–14 months disruption. The 20% contract saving they are pursuing could easily cost 3× in transition.</li><li><strong>Present commercial options before they are demanded.</strong> Three scenarios: (a) current terms +3% CPI, (b) usage-based at 15% reduction with floors, (c) multi-year with 18% reduction and locked pricing.</li><li><strong>Request CEO-to-Forsythe call.</strong> The highest-value action from this meeting. If agreed, escalate to your CEO by Thursday.</li><li><strong>Address Veeva directly.</strong> Ask McAllister: "What would make our proposal definitively stronger for you?" Her answer tells you the real decision criteria.</li></ul><h3>Risk items to manage</h3><ul><li><strong>Champion gap:</strong> Do not reference Dr. Chen's departure — it signals instability. Use Thornton as the continuity voice.</li><li><strong>McAllister disengagement:</strong> If she defers to Forsythe throughout, request a bilateral this week before she forms her RFP recommendation.</li><li><strong>Short meeting:</strong> CFOs leave early. Open with the 90-second ROI summary. Leave commercial scenarios as a printed one-pager regardless.</li></ul><h3>Recommended actions from this meeting</h3><ul><li>Leave a written commercial proposal with three pricing scenarios</li><li>Secure a CEO-to-Forsythe call date — before 4 April</li><li>Bilateral with McAllister to understand RFP scoring criteria</li><li>Ask Thornton to send procurement evaluation timeline within 48 hours</li></ul>`;
   }, 1800);
 }
 
-// ── Follow-ups ────────────────────────────────
 function genFollow(type) {
   const sec = document.getElementById('follow-sec');
   const out = document.getElementById('follow-out');
@@ -1478,15 +1435,15 @@ What we discussed:
 · ROI to date — 38% reduction in audit preparation time, zero compliance incidents across 5 entities since June 2022, and €2.1M in estimated regulatory risk avoided
 
 Agreed actions:
-· Elena → Formal commercial proposal with three pricing scenarios by Friday 28 March
+· Your Name → Formal commercial proposal with three pricing scenarios by Friday 28 March
 · Richard → In-principle agreement to a CEO-level call before 4 April (calendar invite to follow from our CEO's office)
 · Sarah → Bilateral call to discuss RFP evaluation criteria — I will send a time proposal tomorrow
-· James → Procurement evaluation timeline to Elena by Wednesday
+· James → Procurement evaluation timeline to Your Name by Wednesday
 
 I am genuinely committed to finding a structure that works for HelixBio. The compliance platform has delivered measurable value and I want to make sure that story is clearly reflected in whatever commercial outcome we reach.
 
 Best regards,
-Elena Rodriguez | Key Account Manager`,
+Your Name | Key Account Manager`,
 crm:`Date: 25 March 2025 | Type: Strategic Renewal Review
 Attendees: R. Forsythe (CFO), S. McAllister (VP Procurement), J. Thornton (IT Director)
 
@@ -1495,9 +1452,9 @@ Summary: CFO confirmed 20% vendor cost reduction mandate is in effect. Procureme
 Risk level: Critical. Probability adjusted: 38% → 44% pending commercial response.
 
 Actions:
-— Elena: Commercial proposal (3 scenarios) by 28 Mar
-— Elena: Arrange CEO-CFO call before 4 Apr
-— Elena: Bilateral with McAllister re RFP criteria
+— Your Name: Commercial proposal (3 scenarios) by 28 Mar
+— Your Name: Arrange CEO-CFO call before 4 Apr
+— Your Name: Bilateral with McAllister re RFP criteria
 — James Thornton: Send procurement timeline by 27 Mar
 
 Next milestone: Commercial proposal acceptance / rejection by 4 Apr`,
